@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
@@ -27,29 +28,54 @@ class _HomeState extends State<Home> {
               fontSize: 24, fontWeight: FontWeight.bold),
         )),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-              height: height * .30,
-              width: width,
-              child: FutureBuilder<NewsChannelHeadlinesModel>(
-                future: newsViewModel.fetchNewsChannelHeadlinesApi(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<NewsChannelHeadlinesModel> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: SpinKitDancingSquare(
-                        size: 20,
-                        color: Colors.amber,
-                      ),
-                    );
-                  } else {
-                    return Container(); // Placeholder, replace with appropriate Widget
-                  }
-                },
-              ))
-        ],
-      ),
+      body: SizedBox(
+          height: height * .30,
+          width: width,
+          child: FutureBuilder<NewsChannelHeadlinesModel>(
+            future: newsViewModel.fetchNewsChannelHeadlinesApi(),
+            builder: (BuildContext context,
+                AsyncSnapshot<NewsChannelHeadlinesModel> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: SpinKitDancingSquare(
+                    size: 20,
+                    color: Colors.amber,
+                  ),
+                );
+              } else {
+                return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: snapshot.data!.articles!.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              child: CachedNetworkImage(
+                                imageUrl: snapshot
+                                    .data!.articles!.first.urlToImage
+                                    .toString(),
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => Container(
+                                  child: const SpinKitDancingSquare(
+                                    color: Colors.amber,
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(
+                                  Icons.error,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }); // Placeholder, replace with appropriate Widget
+              }
+            },
+          )),
     );
   }
 }

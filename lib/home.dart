@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
         )),
       ),
       body: SizedBox(
-          height: height * .30,
+          height: height * .36,
           width: width,
           child: FutureBuilder<NewsChannelHeadlinesModel>(
             future: newsViewModel.fetchNewsChannelHeadlinesApi(),
@@ -52,23 +53,51 @@ class _HomeState extends State<Home> {
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              child: CachedNetworkImage(
-                                imageUrl: snapshot
-                                    .data!.articles!.first.urlToImage
-                                    .toString(),
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => Container(
-                                  child: const SpinKitDancingSquare(
-                                    color: Colors.amber,
+                              margin: EdgeInsets.all(8),
+                              width: width * .9,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot
+                                      .data!.articles![index].urlToImage
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => Container(
+                                    child: const SpinKitDancingSquare(
+                                      color: Colors.amber,
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                    Icons.error,
+                                    color: Colors.red,
                                   ),
                                 ),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(
-                                  Icons.error,
-                                  color: Colors.red,
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    bottomRight: Radius.circular(20),
+                                  ),
+                                  color: Colors.black.withOpacity(0.6),
+                                ),
+                                child: Text(
+                                  snapshot.data!.articles![index].title
+                                      .toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       );

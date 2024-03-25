@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
@@ -20,12 +21,13 @@ class _HomeState extends State<Home> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
+      backgroundColor: Colors.indigo[200],
       appBar: AppBar(
         backgroundColor: Colors.amber,
         title: Center(
             child: Text(
           'Home',
-          style: GoogleFonts.abrilFatface(
+          style: GoogleFonts.cormorantInfant(
               fontSize: 24, fontWeight: FontWeight.bold),
         )),
       ),
@@ -76,24 +78,26 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
+                              bottom: 8,
+                              left: 8,
+                              right: 8,
                               child: Container(
-                                padding: EdgeInsets.all(8),
+                                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20),
-                                  ),
+                                  // borderRadius: const BorderRadius.only(
+                                  //   bottomLeft: Radius.circular(20),
+                                  //   bottomRight: Radius.circular(20),
+                                  // ),
                                   color: Colors.black.withOpacity(0.6),
                                 ),
                                 child: Text(
                                   snapshot.data!.articles![index].title
                                       .toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
+                                  style: GoogleFonts.cormorantInfant(
+                                    textStyle:
+                                        const TextStyle(color: Colors.white),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),

@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
                               left: 8,
                               right: 8,
                               child: Container(
-                                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                                padding: EdgeInsets.fromLTRB(12, 12, 12, 8),
                                 decoration: BoxDecoration(
                                   // borderRadius: const BorderRadius.only(
                                   //   bottomLeft: Radius.circular(20),

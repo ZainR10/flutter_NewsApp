@@ -14,6 +14,7 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+//news channels name stored as enum because these are constant values
 enum NewsFilterList {
   aryNews,
   alJazeera,
@@ -22,9 +23,10 @@ enum NewsFilterList {
 
 class _HomeState extends State<Home> {
   NewsViewModel newsViewModel = NewsViewModel();
-
+//default channel variable
   NewsFilterList? selectedMenu;
-
+//default channel and parameter for filtering and fetching desired channel from api
+//it is also used in api as a parameter and in news_repository,future builder and in news view_model
   String channelName = 'al-jazeera-english';
 
   @override
@@ -51,6 +53,7 @@ class _HomeState extends State<Home> {
                 if (NewsFilterList.bbcNews.name == item.name) {
                   channelName = 'bbc-news';
                 }
+                //changes news channel  on selection
                 setState(() {
                   selectedMenu = item;
                 });
@@ -94,6 +97,7 @@ class _HomeState extends State<Home> {
                     scrollDirection: Axis.vertical,
                     itemCount: snapshot.data?.articles?.length ?? 0,
                     itemBuilder: (context, index) {
+                      //created this var to only get formated date
                       String? publishedDate =
                           snapshot.data?.articles?[index].publishedAt;
                       DateTime dateTime = DateTime.parse(publishedDate!);
@@ -101,34 +105,35 @@ class _HomeState extends State<Home> {
                           DateFormat.yMMMd().format(dateTime);
                       return Padding(
                         padding: const EdgeInsets.all(15),
+                        //main container for holding all content
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.70,
+                          height: MediaQuery.of(context).size.height * .80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.blueGrey,
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(10, 0, 10, 110),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: CachedNetworkImage(
-                                      imageUrl: snapshot
-                                          .data!.articles![index].urlToImage
-                                          .toString(),
-                                      fit: BoxFit.scaleDown,
-                                      placeholder: (context, url) =>
-                                          const SpinKitDancingSquare(
-                                        color: Colors.amber,
-                                      ),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(
-                                        Icons.error,
-                                        color: Colors.red,
-                                      ),
+                              Padding(
+                                padding: const EdgeInsets.all(12),
+                                //image holder and decorator
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: CachedNetworkImage(
+                                    imageUrl: snapshot
+                                        .data!.articles![index].urlToImage
+                                        .toString(),
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) =>
+                                        const SpinKitDancingSquare(
+                                      color: Colors.amber,
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(
+                                      Icons.api,
+                                      color: Colors.red,
                                     ),
                                   ),
                                 ),
@@ -136,17 +141,20 @@ class _HomeState extends State<Home> {
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 20),
+                                //******title*****
                                 child: Text(
                                   snapshot.data!.articles![index].title
                                       .toString(),
                                   style: GoogleFonts.cormorantInfant(
                                     textStyle: const TextStyle(
-                                        letterSpacing: 0, color: Colors.white),
-                                    fontSize: 20,
+                                        letterSpacing: 5, color: Colors.white),
+                                    fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
+                              const SizedBox(height: 10),
+                              //****date******
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -181,6 +189,8 @@ class _HomeState extends State<Home> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(height: 10),
+                              //*****auther ****
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 0, horizontal: 20),

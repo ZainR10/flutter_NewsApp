@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/home.dart';
+import 'package:flutter_news/View/categories.dart';
+import 'package:flutter_news/View/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: const Categories(),
     );
   }
 }

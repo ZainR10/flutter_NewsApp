@@ -143,11 +143,12 @@ class _HomeState extends State<Home> {
                                     vertical: 10, horizontal: 20),
                                 //******title*****
                                 child: Text(
+                                  maxLines: 3,
                                   snapshot.data!.articles![index].title
                                       .toString(),
                                   style: GoogleFonts.cormorantInfant(
                                     textStyle: const TextStyle(
-                                        letterSpacing: 5, color: Colors.white),
+                                        letterSpacing: 2, color: Colors.white),
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                   ),

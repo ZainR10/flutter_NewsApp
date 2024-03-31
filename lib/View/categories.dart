@@ -18,7 +18,7 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   NewsViewModel newsViewModel = NewsViewModel();
 
-  final Format = DateFormat('MMMM,dd,yyyy');
+  final Format = DateFormat('yMMMMd');
   String categoryName = 'general';
 
   List<String> categoriesList = [
@@ -31,51 +31,62 @@ class _CategoriesState extends State<Categories> {
     'Politics'
   ];
   @override
+  void initState() {
+    super.initState();
+    // Set the default category to "General" when the widget initializes
+    categoryName = 'General';
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
       appBar: AppBar(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            height: 50,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categoriesList.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      categoryName = categoriesList[index];
-                      setState(() {});
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: categoryName == categoriesList[index]
-                                ? Colors.amber
-                                : Colors.blueGrey,
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Text(
-                              categoriesList[index].toString(),
-                              style: GoogleFonts.cormorantInfant(
-                                textStyle: const TextStyle(
-                                  letterSpacing: 1,
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: SizedBox(
+              height: 50,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categoriesList.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        categoryName = categoriesList[index];
+                        setState(() {});
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: categoryName == categoriesList[index]
+                                  ? Colors.amber
+                                  : Colors.blueGrey,
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Text(
+                                categoriesList[index].toString(),
+                                style: GoogleFonts.cormorantInfant(
+                                  textStyle: const TextStyle(
+                                    letterSpacing: 1,
+                                  ),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
+            ),
           ),
           Expanded(
             child: FutureBuilder<NewsCategoriesModel>(
@@ -101,111 +112,81 @@ class _CategoriesState extends State<Categories> {
                       String formattedDate =
                           DateFormat.yMMMd().format(dateTime);
                       return Padding(
-                        padding: const EdgeInsets.all(15),
-                        //main container for holding all content
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * .80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.blueGrey,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            // mainAxisAlignment: MainAxisAlignment.center,
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(12),
-                                //image holder and decorator
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: CachedNetworkImage(
-                                    imageUrl: snapshot
-                                        .data!.articles![index].urlToImage
-                                        .toString(),
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) =>
-                                        const SpinKitDancingSquare(
-                                      color: Colors.amber,
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(
-                                      Icons.api,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
-                                //******title*****
-                                child: Text(
-                                  maxLines: 3,
-                                  snapshot.data!.articles![index].title
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: CachedNetworkImage(
+                                  height: height * .18,
+                                  width: width * .5,
+                                  imageUrl: snapshot
+                                      .data!.articles![index].urlToImage
                                       .toString(),
-                                  style: GoogleFonts.cormorantInfant(
-                                    textStyle: const TextStyle(
-                                        letterSpacing: 2, color: Colors.white),
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) =>
+                                      const SpinKitDancingSquare(
+                                    color: Colors.amber,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                    Icons.api,
+                                    color: Colors.red,
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 10),
-                              //****date******
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 0, horizontal: 20),
-                                    child: Text(
-                                      'Published at:',
+                              Expanded(
+                                child: Container(
+                                  height: height * .18,
+                                  padding: const EdgeInsets.all(8),
+                                  child: Column(children: [
+                                    Text(
+                                      maxLines: 3,
+                                      snapshot.data!.articles![index].title
+                                          .toString()
+                                          .toString(),
                                       style: GoogleFonts.cormorantInfant(
                                         textStyle: const TextStyle(
                                             letterSpacing: 0,
-                                            color: Colors.white),
+                                            color: Colors.black),
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 0, horizontal: 20),
-                                    child: Text(
-                                      formattedDate,
-                                      style: GoogleFonts.cormorantInfant(
-                                        textStyle: const TextStyle(
-                                            letterSpacing: 0,
-                                            color: Colors.white),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              //*****auther ****
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 20),
-                                child: Text(
-                                  snapshot.data!.articles![index].author
-                                      .toString(),
-                                  style: GoogleFonts.cormorantInfant(
-                                    textStyle: const TextStyle(
-                                        letterSpacing: 0, color: Colors.white),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                    const Spacer(),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          overflow: TextOverflow.ellipsis,
+                                          snapshot.data!.articles![index]
+                                              .source!.name
+                                              .toString(),
+                                          style: GoogleFonts.cormorantInfant(
+                                            textStyle: const TextStyle(
+                                                color: Colors.black),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                        Text(
+                                          Format.format(dateTime),
+                                          style: GoogleFonts.cormorantInfant(
+                                            textStyle: const TextStyle(
+                                                color: Colors.black),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ]),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
+                            ]),
                       );
                     },
                   );

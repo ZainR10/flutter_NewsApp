@@ -31,13 +31,16 @@ class _HomeState extends State<Home> {
 //default channel and parameter for filtering and fetching desired channel from api
 //it is also used in api as a parameter and in news_repository,future builder and in news view_model
   String channelName = 'bbc-news';
+  final Format = DateFormat('yMMMMd');
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
+      backgroundColor: const Color(0xFFF8F8FF),
       appBar: AppBar(
+        backgroundColor: const Color(0xFFF8F8FF),
         title: Text(
           'Top News',
           style: GoogleFonts.cormorantInfant(
@@ -140,8 +143,10 @@ class _HomeState extends State<Home> {
                           child: Container(
                             height: MediaQuery.of(context).size.height * .80,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.blueGrey,
+                              border:
+                                  Border.all(color: Colors.black, width: 4.0),
+                              borderRadius: BorderRadius.circular(15),
+                              color: const Color(0xFFF8F8FF),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -180,7 +185,7 @@ class _HomeState extends State<Home> {
                                     style: GoogleFonts.cormorantInfant(
                                       textStyle: const TextStyle(
                                           letterSpacing: 2,
-                                          color: Colors.white),
+                                          color: Colors.black),
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -200,7 +205,7 @@ class _HomeState extends State<Home> {
                                         style: GoogleFonts.cormorantInfant(
                                           textStyle: const TextStyle(
                                               letterSpacing: 0,
-                                              color: Colors.white),
+                                              color: Colors.black),
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -210,11 +215,11 @@ class _HomeState extends State<Home> {
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 0, horizontal: 20),
                                       child: Text(
-                                        formattedDate,
+                                        Format.format(dateTime),
                                         style: GoogleFonts.cormorantInfant(
                                           textStyle: const TextStyle(
                                               letterSpacing: 0,
-                                              color: Colors.white),
+                                              color: Colors.black),
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -232,8 +237,8 @@ class _HomeState extends State<Home> {
                                         .toString(),
                                     style: GoogleFonts.cormorantInfant(
                                       textStyle: const TextStyle(
-                                          letterSpacing: 0,
-                                          color: Colors.white),
+                                        letterSpacing: 0,
+                                      ),
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),

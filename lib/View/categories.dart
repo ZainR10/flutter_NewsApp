@@ -44,7 +44,10 @@ class _CategoriesState extends State<Categories> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Color(0xFFF8F8FF),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF8F8FF),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -66,8 +69,8 @@ class _CategoriesState extends State<Categories> {
                         child: Container(
                           decoration: BoxDecoration(
                               color: categoryName == categoriesList[index]
-                                  ? Colors.amber
-                                  : Colors.blueGrey,
+                                  ? Colors.cyanAccent[200]
+                                  : Colors.cyan[100],
                               borderRadius: BorderRadius.circular(12)),
                           child: Center(
                             child: Padding(
@@ -144,6 +147,7 @@ class _CategoriesState extends State<Categories> {
                               // mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                //*****image container******
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
                                   child: CachedNetworkImage(
@@ -169,15 +173,15 @@ class _CategoriesState extends State<Categories> {
                                     height: height * .18,
                                     padding: const EdgeInsets.all(8),
                                     child: Column(children: [
+                                      //*****title******
                                       Text(
                                         maxLines: 3,
                                         snapshot.data!.articles![index].title
-                                            .toString()
                                             .toString(),
                                         style: GoogleFonts.cormorantInfant(
                                           textStyle: const TextStyle(
-                                              letterSpacing: 0,
-                                              color: Colors.black),
+                                            letterSpacing: 0,
+                                          ),
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -187,23 +191,23 @@ class _CategoriesState extends State<Categories> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+                                          //*****source name******
                                           Text(
                                             overflow: TextOverflow.ellipsis,
                                             snapshot.data!.articles![index]
                                                 .source!.name
                                                 .toString(),
                                             style: GoogleFonts.cormorantInfant(
-                                              textStyle: const TextStyle(
-                                                  color: Colors.black),
+                                              textStyle: const TextStyle(),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w900,
                                             ),
                                           ),
+                                          //*****date******
                                           Text(
                                             Format.format(dateTime),
                                             style: GoogleFonts.cormorantInfant(
-                                              textStyle: const TextStyle(
-                                                  color: Colors.black),
+                                              textStyle: const TextStyle(),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w900,
                                             ),

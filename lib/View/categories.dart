@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_news/View/news_detail_screen.dart';
 import 'package:flutter_news/model/news_categories_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
+import 'package:flutter_news/view_model/routes.dart';
+import 'package:flutter_news/view_model/routes_name.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -116,29 +118,26 @@ class _CategoriesState extends State<Categories> {
                         padding: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushNamed(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => NewsDetail(
-                                  newsImage: snapshot
-                                      .data!.articles![index].urlToImage
-                                      .toString(),
-                                  newsTitle: snapshot
-                                      .data!.articles![index].title
-                                      .toString(),
-                                  newsDate: formattedDate,
-                                  author: snapshot.data!.articles![index].author
-                                      .toString(),
-                                  description: snapshot
-                                      .data!.articles![index].description
-                                      .toString(),
-                                  content: snapshot
-                                      .data!.articles![index].content
-                                      .toString(),
-                                  source: snapshot
-                                      .data!.articles![index].source!.name
-                                      .toString(),
-                                ),
+                              RoutesName.NewsDetail,
+                              arguments: NewsDetailArguments(
+                                newsImage: snapshot
+                                    .data!.articles![index].urlToImage
+                                    .toString(),
+                                newsTitle: snapshot.data!.articles![index].title
+                                    .toString(),
+                                newsDate: formattedDate,
+                                author: snapshot.data!.articles![index].author
+                                    .toString(),
+                                description: snapshot
+                                    .data!.articles![index].description
+                                    .toString(),
+                                content: snapshot.data!.articles![index].content
+                                    .toString(),
+                                source: snapshot
+                                    .data!.articles![index].source!.name
+                                    .toString(),
                               ),
                             );
                           },

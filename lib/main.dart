@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/View/categories.dart';
-import 'package:flutter_news/View/home_screen.dart';
+
+import 'package:flutter_news/view_model/routes.dart';
+import 'package:flutter_news/view_model/routes_name.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const Categories(),
+      initialRoute: RoutesName.Categories,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

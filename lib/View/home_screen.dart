@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/View/news_detail_screen.dart';
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
+import 'package:flutter_news/view_model/routes.dart';
+import 'package:flutter_news/view_model/routes_name.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -28,7 +30,7 @@ class _HomeState extends State<Home> {
   NewsFilterList? selectedMenu;
 //default channel and parameter for filtering and fetching desired channel from api
 //it is also used in api as a parameter and in news_repository,future builder and in news view_model
-  String channelName = 'al-jazeera-english';
+  String channelName = 'bbc-news';
 
   @override
   Widget build(BuildContext context) {
@@ -111,30 +113,28 @@ class _HomeState extends State<Home> {
                         //to naviget for full news.
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NewsDetail(
-                                      newsImage: snapshot
-                                          .data!.articles![index].urlToImage
-                                          .toString(),
-                                      newsTitle: snapshot
-                                          .data!.articles![index].title
-                                          .toString(),
-                                      newsDate: formattedDate,
-                                      author: snapshot
-                                          .data!.articles![index].author
-                                          .toString(),
-                                      description: snapshot
-                                          .data!.articles![index].description
-                                          .toString(),
-                                      content: snapshot
-                                          .data!.articles![index].content
-                                          .toString(),
-                                      source: snapshot
-                                          .data!.articles![index].source!.name
-                                          .toString()),
-                                ));
+                            Navigator.pushNamed(
+                              context,
+                              RoutesName.NewsDetail,
+                              arguments: NewsDetailArguments(
+                                newsImage: snapshot
+                                    .data!.articles![index].urlToImage
+                                    .toString(),
+                                newsTitle: snapshot.data!.articles![index].title
+                                    .toString(),
+                                newsDate: formattedDate,
+                                author: snapshot.data!.articles![index].author
+                                    .toString(),
+                                description: snapshot
+                                    .data!.articles![index].description
+                                    .toString(),
+                                content: snapshot.data!.articles![index].content
+                                    .toString(),
+                                source: snapshot
+                                    .data!.articles![index].source!.name
+                                    .toString(),
+                              ),
+                            );
                           },
                           //main container for holding all content
                           child: Container(

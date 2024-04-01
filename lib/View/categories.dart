@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_news/View/news_detail_screen.dart';
 import 'package:flutter_news/model/news_categories_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -112,81 +113,110 @@ class _CategoriesState extends State<Categories> {
                       String formattedDate =
                           DateFormat.yMMMd().format(dateTime);
                       return Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Row(
-                            // mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: CachedNetworkImage(
-                                  height: height * .18,
-                                  width: width * .5,
-                                  imageUrl: snapshot
+                        padding: const EdgeInsets.all(8),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NewsDetail(
+                                  newsImage: snapshot
                                       .data!.articles![index].urlToImage
                                       .toString(),
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) =>
-                                      const SpinKitDancingSquare(
-                                    color: Colors.amber,
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(
-                                    Icons.api,
-                                    color: Colors.red,
-                                  ),
+                                  newsTitle: snapshot
+                                      .data!.articles![index].title
+                                      .toString(),
+                                  newsDate: formattedDate,
+                                  author: snapshot.data!.articles![index].author
+                                      .toString(),
+                                  description: snapshot
+                                      .data!.articles![index].description
+                                      .toString(),
+                                  content: snapshot
+                                      .data!.articles![index].content
+                                      .toString(),
+                                  source: snapshot
+                                      .data!.articles![index].source!.name
+                                      .toString(),
                                 ),
                               ),
-                              Expanded(
-                                child: Container(
-                                  height: height * .18,
-                                  padding: const EdgeInsets.all(8),
-                                  child: Column(children: [
-                                    Text(
-                                      maxLines: 3,
-                                      snapshot.data!.articles![index].title
-                                          .toString()
-                                          .toString(),
-                                      style: GoogleFonts.cormorantInfant(
-                                        textStyle: const TextStyle(
-                                            letterSpacing: 0,
-                                            color: Colors.black),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                            );
+                          },
+                          child: Row(
+                              // mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: CachedNetworkImage(
+                                    height: height * .18,
+                                    width: width * .5,
+                                    imageUrl: snapshot
+                                        .data!.articles![index].urlToImage
+                                        .toString(),
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) =>
+                                        const SpinKitDancingSquare(
+                                      color: Colors.amber,
                                     ),
-                                    const Spacer(),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          overflow: TextOverflow.ellipsis,
-                                          snapshot.data!.articles![index]
-                                              .source!.name
-                                              .toString(),
-                                          style: GoogleFonts.cormorantInfant(
-                                            textStyle: const TextStyle(
-                                                color: Colors.black),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                        Text(
-                                          Format.format(dateTime),
-                                          style: GoogleFonts.cormorantInfant(
-                                            textStyle: const TextStyle(
-                                                color: Colors.black),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ]),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(
+                                      Icons.api,
+                                      color: Colors.red,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ]),
+                                Expanded(
+                                  child: Container(
+                                    height: height * .18,
+                                    padding: const EdgeInsets.all(8),
+                                    child: Column(children: [
+                                      Text(
+                                        maxLines: 3,
+                                        snapshot.data!.articles![index].title
+                                            .toString()
+                                            .toString(),
+                                        style: GoogleFonts.cormorantInfant(
+                                          textStyle: const TextStyle(
+                                              letterSpacing: 0,
+                                              color: Colors.black),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            overflow: TextOverflow.ellipsis,
+                                            snapshot.data!.articles![index]
+                                                .source!.name
+                                                .toString(),
+                                            style: GoogleFonts.cormorantInfant(
+                                              textStyle: const TextStyle(
+                                                  color: Colors.black),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                          ),
+                                          Text(
+                                            Format.format(dateTime),
+                                            style: GoogleFonts.cormorantInfant(
+                                              textStyle: const TextStyle(
+                                                  color: Colors.black),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ]),
+                                  ),
+                                ),
+                              ]),
+                        ),
                       );
                     },
                   );

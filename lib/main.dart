@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutesName.Categories,
+      initialRoute: RoutesName.Home,
       onGenerateRoute: Routes.generateRoute,
     );
   }

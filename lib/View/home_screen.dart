@@ -1,14 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:flutter_news/view_model/routes.dart';
 import 'package:flutter_news/view_model/routes_name.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -85,6 +88,54 @@ class _HomeState extends State<Home> {
                   ]),
         ],
       ),
+      bottomNavigationBar:
+          SalomonBottomBar(backgroundColor: Colors.cyan[100], items: [
+        //home
+        SalomonBottomBarItem(
+          icon: const Icon(
+            Icons.newspaper_rounded,
+            size: 35,
+          ),
+          title: Text(
+            'home',
+            style: GoogleFonts.cormorantInfant(
+              textStyle: const TextStyle(),
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
+        //topics
+        SalomonBottomBarItem(
+          icon: const Icon(
+            Icons.view_list_rounded,
+            size: 35,
+          ),
+          title: Text(
+            'Topics',
+            style: GoogleFonts.cormorantInfant(
+              textStyle: const TextStyle(),
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
+        //settings
+        SalomonBottomBarItem(
+          icon: const Icon(
+            Icons.settings_outlined,
+            size: 35,
+          ),
+          title: Text(
+            'Settings',
+            style: GoogleFonts.cormorantInfant(
+              textStyle: const TextStyle(),
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
+      ]),
       body: SafeArea(
         child: FutureBuilder<NewsChannelHeadlinesModel>(
           future: newsViewModel.fetchNewsChannelHeadlinesApi(channelName),

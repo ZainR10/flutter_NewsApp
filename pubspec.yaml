@@ -41,6 +41,8 @@ dependencies:
   flutter_spinkit: ^5.2.0
   intl: ^0.19.0
   cached_network_image: ^3.3.1
+  salomon_bottom_bar: ^3.3.2
+  font_awesome_flutter: ^10.7.0
 
 dev_dependencies:
   flutter_test:

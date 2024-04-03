@@ -8,7 +8,7 @@ import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:flutter_news/view_model/routes.dart';
 import 'package:flutter_news/view_model/routes_name.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -40,20 +40,22 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8FF),
+      // backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF8F8FF),
+        backgroundColor: Colors.blue[900],
         title: Text(
           'Top News',
           style: GoogleFonts.cormorantInfant(
-            textStyle: const TextStyle(letterSpacing: 3, color: Colors.black),
+            textStyle: const TextStyle(letterSpacing: 3, color: Colors.white),
             fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
           PopupMenuButton<NewsFilterList>(
+              iconColor: Colors.white,
               onSelected: (NewsFilterList item) {
                 if (NewsFilterList.alJazeera.name == item.name) {
                   channelName = '"al-jazeera-english';
@@ -88,54 +90,72 @@ class _HomeState extends State<Home> {
                   ]),
         ],
       ),
-      bottomNavigationBar:
-          SalomonBottomBar(backgroundColor: Colors.cyan[100], items: [
-        //home
-        SalomonBottomBarItem(
-          icon: const Icon(
-            Icons.newspaper_rounded,
-            size: 35,
-          ),
-          title: Text(
-            'home',
-            style: GoogleFonts.cormorantInfant(
-              textStyle: const TextStyle(),
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
+      bottomNavigationBar: SalomonBottomBar(
+        backgroundColor: Colors.blue[900],
+        currentIndex: 0, // Add currentIndex if needed
+
+        items: [
+          // Home
+          SalomonBottomBarItem(
+            selectedColor: Colors.amber,
+            icon: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, 'home_screen');
+              },
+              child: const Icon(
+                Icons.newspaper_rounded,
+                size: 35,
+              ),
+            ),
+            title: Text(
+              'Home',
+              style: GoogleFonts.cormorantInfant(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
-        ),
-        //topics
-        SalomonBottomBarItem(
-          icon: const Icon(
-            Icons.view_list_rounded,
-            size: 35,
-          ),
-          title: Text(
-            'Topics',
-            style: GoogleFonts.cormorantInfant(
-              textStyle: const TextStyle(),
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
+          // Topics
+          SalomonBottomBarItem(
+            selectedColor: Colors.amber,
+            icon: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, 'categories');
+              },
+              child: const Icon(
+                Icons.view_list_rounded,
+                size: 35,
+              ),
+            ),
+            title: Text(
+              'Topics',
+              style: GoogleFonts.cormorantInfant(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
-        ),
-        //settings
-        SalomonBottomBarItem(
-          icon: const Icon(
-            Icons.settings_outlined,
-            size: 35,
-          ),
-          title: Text(
-            'Settings',
-            style: GoogleFonts.cormorantInfant(
-              textStyle: const TextStyle(),
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
+          // Settings
+          SalomonBottomBarItem(
+            selectedColor: Colors.amber,
+            icon: const Icon(
+              Icons.settings_outlined,
+              size: 35,
+            ),
+            title: Text(
+              'Settings',
+              style: GoogleFonts.cormorantInfant(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
-        ),
-      ]),
+        ],
+      ),
+
       body: SafeArea(
         child: FutureBuilder<NewsChannelHeadlinesModel>(
           future: newsViewModel.fetchNewsChannelHeadlinesApi(channelName),
@@ -195,9 +215,9 @@ class _HomeState extends State<Home> {
                             height: MediaQuery.of(context).size.height * .80,
                             decoration: BoxDecoration(
                               border:
-                                  Border.all(color: Colors.black, width: 4.0),
+                                  Border.all(color: Colors.grey, width: 2.0),
                               borderRadius: BorderRadius.circular(15),
-                              color: const Color(0xFFF8F8FF),
+                              color: Colors.grey[400],
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,

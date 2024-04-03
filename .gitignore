@@ -1,3 +1,6 @@
+# Ignore specific URL
+https://newsapi.org/v2/top-headlines?sources=${channelName}&apiKey=f268e96207244b1abf8c5aa984769405
+https://newsapi.org/v2/everything?q=${category}&apiKey=f268e96207244b1abf8c5aa984769405
 # Miscellaneous
 *.class
 *.log

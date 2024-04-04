@@ -32,10 +32,15 @@ class _NewsDetailState extends State<NewsDetail> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8FF),
-      appBar: AppBar(),
+      backgroundColor: Colors.grey[400],
+      appBar: AppBar(
+        leading: const BackButton(
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.blue[900],
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(3),
+        padding: const EdgeInsets.only(top: 0, right: 3, bottom: 3, left: 3),
         child: Stack(
           children: [
             Container(
@@ -45,7 +50,6 @@ class _NewsDetailState extends State<NewsDetail> {
                   topRight: Radius.circular(20),
                   topLeft: Radius.circular(20),
                   bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0),
                 ),
                 child: CachedNetworkImage(
                   fit: BoxFit.contain,
@@ -66,9 +70,9 @@ class _NewsDetailState extends State<NewsDetail> {
               height: height * .8,
               margin: EdgeInsets.only(top: height * .33),
               padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              decoration: const BoxDecoration(
-                color: Color(0xFFF8F8FF),
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: Colors.grey[400],
+                borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(20),
                     topLeft: Radius.circular(20)),
               ),

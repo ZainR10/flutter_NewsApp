@@ -9,6 +9,7 @@ import 'package:flutter_news/view_model/routes_name.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Categories extends StatefulWidget {
   const Categories({super.key});
@@ -18,6 +19,7 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
+  int _currentIndex = 1;
   NewsViewModel newsViewModel = NewsViewModel();
 
   final Format = DateFormat('yMMMMd');
@@ -44,9 +46,78 @@ class _CategoriesState extends State<Categories> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      backgroundColor: Color(0xFFF8F8FF),
+      backgroundColor: Colors.grey[400],
       appBar: AppBar(
-        backgroundColor: Color(0xFFF8F8FF),
+        leading: const BackButton(
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.blue[900],
+      ),
+      bottomNavigationBar: SalomonBottomBar(
+        backgroundColor: Colors.blue[900],
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index; // Update the current index
+            // Navigate to the respective screens based on the selected index
+            if (_currentIndex == 0) {
+              Navigator.pushNamed(context, RoutesName.Home);
+            } else if (_currentIndex == 2) {
+              Navigator.pushNamed(context, RoutesName.Categories);
+            }
+          });
+        }, // Add currentIndex if needed
+
+        items: [
+          // Home
+          SalomonBottomBarItem(
+            selectedColor: Colors.amber,
+            icon: const Icon(
+              Icons.newspaper_rounded,
+              size: 35,
+            ),
+            title: Text(
+              'Home',
+              style: GoogleFonts.cormorantInfant(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          // Topics
+          SalomonBottomBarItem(
+            selectedColor: Colors.amber,
+            icon: const Icon(
+              Icons.view_list_rounded,
+              size: 35,
+            ),
+            title: Text(
+              'Topics',
+              style: GoogleFonts.cormorantInfant(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          // Settings
+          SalomonBottomBarItem(
+            selectedColor: Colors.amber,
+            icon: const Icon(
+              Icons.settings_outlined,
+              size: 35,
+            ),
+            title: Text(
+              'Settings',
+              style: GoogleFonts.cormorantInfant(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -69,8 +140,8 @@ class _CategoriesState extends State<Categories> {
                         child: Container(
                           decoration: BoxDecoration(
                               color: categoryName == categoriesList[index]
-                                  ? Colors.cyanAccent[200]
-                                  : Colors.cyan[100],
+                                  ? Colors.lightBlue.shade700
+                                  : Colors.lightBlueAccent[200],
                               borderRadius: BorderRadius.circular(12)),
                           child: Center(
                             child: Padding(
@@ -144,6 +215,7 @@ class _CategoriesState extends State<Categories> {
                             );
                           },
                           child: Row(
+
                               // mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -170,6 +242,7 @@ class _CategoriesState extends State<Categories> {
                                 ),
                                 Expanded(
                                   child: Container(
+                                    // color: Colors.grey[400],
                                     height: height * .18,
                                     padding: const EdgeInsets.all(8),
                                     child: Column(children: [

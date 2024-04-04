@@ -28,6 +28,7 @@ enum NewsFilterList {
 }
 
 class _HomeState extends State<Home> {
+  int _currentIndex = 0;
   NewsViewModel newsViewModel = NewsViewModel();
 //default channel variable
   NewsFilterList? selectedMenu;
@@ -92,20 +93,26 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: SalomonBottomBar(
         backgroundColor: Colors.blue[900],
-        currentIndex: 0, // Add currentIndex if needed
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index; // Update the current index
+            // Navigate to the respective screens based on the selected index
+            if (_currentIndex == 1) {
+              Navigator.pushNamed(context, RoutesName.Categories);
+            } else if (_currentIndex == 2) {
+              Navigator.pushNamed(context, RoutesName.Home);
+            }
+          });
+        }, // Add currentIndex if needed
 
         items: [
           // Home
           SalomonBottomBarItem(
             selectedColor: Colors.amber,
-            icon: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, 'home_screen');
-              },
-              child: const Icon(
-                Icons.newspaper_rounded,
-                size: 35,
-              ),
+            icon: const Icon(
+              Icons.newspaper_rounded,
+              size: 35,
             ),
             title: Text(
               'Home',
@@ -119,14 +126,9 @@ class _HomeState extends State<Home> {
           // Topics
           SalomonBottomBarItem(
             selectedColor: Colors.amber,
-            icon: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, 'categories');
-              },
-              child: const Icon(
-                Icons.view_list_rounded,
-                size: 35,
-              ),
+            icon: const Icon(
+              Icons.view_list_rounded,
+              size: 35,
             ),
             title: Text(
               'Topics',

@@ -50,7 +50,10 @@ class _CategoriesState extends State<Categories> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Center(child: Text("New's Categories")),
-        leading: const BackButton(
+        leading: BackButton(
+          onPressed: () {
+            Navigator.pushNamed(context, 'home_screen');
+          },
           color: Colors.white,
         ),
         backgroundColor: Colors.blue[900],

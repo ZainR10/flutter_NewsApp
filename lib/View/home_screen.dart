@@ -46,6 +46,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       // backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         // backgroundColor: Colors.blue[900],
         title: const Text(
           "Breaking New's",

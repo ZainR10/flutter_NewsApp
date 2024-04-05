@@ -95,7 +95,8 @@ class _HomeState extends State<Home> {
         ],
       ),
       bottomNavigationBar: SalomonBottomBar(
-        backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
+        backgroundColor:
+            LightTheme.lightThemeData.bottomNavigationBarTheme.backgroundColor,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -110,28 +111,30 @@ class _HomeState extends State<Home> {
         items: [
           //home
           SalomonBottomBarItem(
-            selectedColor:
-                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
+            selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
+                .selectedIconTheme?.color,
             icon: const Icon(
               Icons.newspaper_rounded,
               size: 35,
             ),
             title: Text(
               'Home',
-              style: themeData.bottomNavigationBarTheme.selectedLabelStyle,
+              style: LightTheme
+                  .lightThemeData.bottomNavigationBarTheme.selectedLabelStyle,
             ),
           ),
           //topics
           SalomonBottomBarItem(
-            selectedColor:
-                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
+            selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
+                .selectedIconTheme?.color,
             icon: const Icon(
               Icons.view_list_rounded,
               size: 35,
             ),
             title: Text(
               'Topics',
-              style: themeData.bottomNavigationBarTheme.selectedLabelStyle,
+              style: LightTheme
+                  .lightThemeData.bottomNavigationBarTheme.selectedLabelStyle,
             ),
           ),
         ],
@@ -195,10 +198,11 @@ class _HomeState extends State<Home> {
                           child: Container(
                             height: MediaQuery.of(context).size.height * .80,
                             decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.grey, width: 2.0),
+                              border: Border.all(
+                                  color: LightTheme.containerBorderColor,
+                                  width: 2.0),
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors.grey[400],
+                              color: LightTheme.containerColor,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,

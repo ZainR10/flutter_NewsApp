@@ -59,7 +59,8 @@ class _CategoriesState extends State<Categories> {
         // backgroundColor: Colors.blue[900],
       ),
       bottomNavigationBar: SalomonBottomBar(
-        backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
+        backgroundColor:
+            LightTheme.lightThemeData.bottomNavigationBarTheme.backgroundColor,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -74,26 +75,27 @@ class _CategoriesState extends State<Categories> {
         items: [
           //home
           SalomonBottomBarItem(
-            selectedColor:
-                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
+            selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
+                .selectedIconTheme?.color,
             icon: const Icon(
               Icons.newspaper_rounded,
               size: 35,
             ),
             title: Text('Home',
-                style: themeData.bottomNavigationBarTheme.selectedLabelStyle),
+                style: LightTheme.lightThemeData.bottomNavigationBarTheme
+                    .selectedLabelStyle),
           ),
           //topics
           SalomonBottomBarItem(
-              selectedColor:
-                  themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
+              selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
+                  .selectedIconTheme?.color,
               icon: const Icon(
                 Icons.view_list_rounded,
                 size: 35,
               ),
               title: Text('Topics',
-                  style:
-                      themeData.bottomNavigationBarTheme.selectedLabelStyle)),
+                  style: LightTheme.lightThemeData.bottomNavigationBarTheme
+                      .selectedLabelStyle)),
         ],
       ),
       body: Column(
@@ -198,7 +200,7 @@ class _CategoriesState extends State<Categories> {
                                 borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(5),
                                     bottomRight: Radius.circular(5)),
-                                color: Colors.grey[400]),
+                                color: LightTheme.containerColor),
                             child: Row(
 
                                 // mainAxisAlignment: MainAxisAlignment.start,

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -71,7 +72,7 @@ class _NewsDetailState extends State<NewsDetail> {
               margin: EdgeInsets.only(top: height * .33),
               padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
               decoration: BoxDecoration(
-                color: Colors.grey[400],
+                color: LightTheme.containerColor,
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(20),
                     topLeft: Radius.circular(20)),

@@ -54,9 +54,9 @@ class _CategoriesState extends State<Categories> {
           onPressed: () {
             Navigator.pushNamed(context, 'home_screen');
           },
-          color: Colors.white,
+          // color: Colors.white,
         ),
-        backgroundColor: Colors.blue[900],
+        // backgroundColor: Colors.blue[900],
       ),
       bottomNavigationBar: SalomonBottomBar(
         backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
@@ -80,49 +80,20 @@ class _CategoriesState extends State<Categories> {
               Icons.newspaper_rounded,
               size: 35,
             ),
-            title: Text(
-              'Home',
-              style: GoogleFonts.cormorantInfant(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
+            title: Text('Home',
+                style: themeData.bottomNavigationBarTheme.selectedLabelStyle),
           ),
           //topics
           SalomonBottomBarItem(
-            selectedColor:
-                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
-            icon: const Icon(
-              Icons.view_list_rounded,
-              size: 35,
-            ),
-            title: Text(
-              'Topics',
-              style: GoogleFonts.cormorantInfant(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
+              selectedColor:
+                  themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
+              icon: const Icon(
+                Icons.view_list_rounded,
+                size: 35,
               ),
-            ),
-          ),
-          //settings
-          SalomonBottomBarItem(
-            selectedColor:
-                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
-            icon: const Icon(
-              Icons.settings_outlined,
-              size: 35,
-            ),
-            title: Text(
-              'Settings',
-              style: GoogleFonts.cormorantInfant(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ),
+              title: Text('Topics',
+                  style:
+                      themeData.bottomNavigationBarTheme.selectedLabelStyle)),
         ],
       ),
       body: Column(
@@ -154,7 +125,7 @@ class _CategoriesState extends State<Categories> {
                               padding: const EdgeInsets.all(12),
                               child: Text(
                                 categoriesList[index].toString(),
-                                style: GoogleFonts.cormorantInfant(
+                                style: GoogleFonts.josefinSans(
                                   textStyle: const TextStyle(
                                     letterSpacing: 1,
                                   ),
@@ -265,7 +236,7 @@ class _CategoriesState extends State<Categories> {
                                           maxLines: 3,
                                           snapshot.data!.articles![index].title
                                               .toString(),
-                                          style: GoogleFonts.cormorantInfant(
+                                          style: GoogleFonts.josefinSans(
                                             textStyle: const TextStyle(
                                               letterSpacing: 0,
                                             ),
@@ -284,8 +255,7 @@ class _CategoriesState extends State<Categories> {
                                               snapshot.data!.articles![index]
                                                   .source!.name
                                                   .toString(),
-                                              style:
-                                                  GoogleFonts.cormorantInfant(
+                                              style: GoogleFonts.josefinSans(
                                                 textStyle: const TextStyle(),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w900,
@@ -294,8 +264,7 @@ class _CategoriesState extends State<Categories> {
                                             //*****date******
                                             Text(
                                               Format.format(dateTime),
-                                              style:
-                                                  GoogleFonts.cormorantInfant(
+                                              style: GoogleFonts.josefinSans(
                                                 textStyle: const TextStyle(),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w900,

@@ -118,11 +118,7 @@ class _HomeState extends State<Home> {
             ),
             title: Text(
               'Home',
-              style: GoogleFonts.cormorantInfant(
-                // color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
+              style: themeData.bottomNavigationBarTheme.selectedLabelStyle,
             ),
           ),
           //topics
@@ -135,28 +131,7 @@ class _HomeState extends State<Home> {
             ),
             title: Text(
               'Topics',
-              style: GoogleFonts.cormorantInfant(
-                // color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ),
-          //settings
-          SalomonBottomBarItem(
-            selectedColor:
-                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
-            icon: const Icon(
-              Icons.settings_outlined,
-              size: 35,
-            ),
-            title: Text(
-              'Settings',
-              style: GoogleFonts.cormorantInfant(
-                // color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
+              style: themeData.bottomNavigationBarTheme.selectedLabelStyle,
             ),
           ),
         ],
@@ -259,7 +234,7 @@ class _HomeState extends State<Home> {
                                     maxLines: 3,
                                     snapshot.data!.articles![index].title
                                         .toString(),
-                                    style: GoogleFonts.cormorantInfant(
+                                    style: GoogleFonts.josefinSans(
                                       textStyle: const TextStyle(
                                           letterSpacing: 2,
                                           color: Colors.black),
@@ -279,7 +254,7 @@ class _HomeState extends State<Home> {
                                           vertical: 0, horizontal: 20),
                                       child: Text(
                                         'Published at:',
-                                        style: GoogleFonts.cormorantInfant(
+                                        style: GoogleFonts.josefinSans(
                                           textStyle: const TextStyle(
                                               letterSpacing: 0,
                                               color: Colors.black),
@@ -293,7 +268,7 @@ class _HomeState extends State<Home> {
                                           vertical: 0, horizontal: 20),
                                       child: Text(
                                         Format.format(dateTime),
-                                        style: GoogleFonts.cormorantInfant(
+                                        style: GoogleFonts.josefinSans(
                                           textStyle: const TextStyle(
                                               letterSpacing: 0,
                                               color: Colors.black),
@@ -312,7 +287,7 @@ class _HomeState extends State<Home> {
                                   child: Text(
                                     snapshot.data!.articles![index].author
                                         .toString(),
-                                    style: GoogleFonts.cormorantInfant(
+                                    style: GoogleFonts.josefinSans(
                                       textStyle: const TextStyle(
                                         letterSpacing: 0,
                                       ),

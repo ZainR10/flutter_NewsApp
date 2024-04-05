@@ -34,10 +34,10 @@ class _NewsDetailState extends State<NewsDetail> {
     return Scaffold(
       backgroundColor: Colors.grey[400],
       appBar: AppBar(
-        leading: const BackButton(
-            // color: Colors.white,
-            ),
-        backgroundColor: Colors.blue[900],
+        title: const Center(
+          child: Text('Full Article'),
+        ),
+        leading: const BackButton(),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 0, right: 2, bottom: 2, left: 2),
@@ -81,7 +81,7 @@ class _NewsDetailState extends State<NewsDetail> {
                   //title
                   Text(
                     widget.newsTitle,
-                    style: GoogleFonts.cormorantInfant(
+                    style: GoogleFonts.josefinSans(
                       textStyle: const TextStyle(
                         letterSpacing: 0,
                       ),
@@ -98,7 +98,7 @@ class _NewsDetailState extends State<NewsDetail> {
                       //news source
                       Text(
                         widget.source,
-                        style: GoogleFonts.cormorantInfant(
+                        style: GoogleFonts.josefinSans(
                           textStyle: const TextStyle(
                             letterSpacing: 1,
                           ),
@@ -109,7 +109,7 @@ class _NewsDetailState extends State<NewsDetail> {
                       //date
                       Text(
                         widget.newsDate,
-                        style: GoogleFonts.cormorantInfant(
+                        style: GoogleFonts.josefinSans(
                           textStyle: const TextStyle(letterSpacing: 1),
                           fontSize: 20,
                           fontWeight: FontWeight.w900,
@@ -122,7 +122,7 @@ class _NewsDetailState extends State<NewsDetail> {
                   ),
                   Text(
                     widget.content,
-                    style: GoogleFonts.cormorantInfant(
+                    style: GoogleFonts.josefinSans(
                       textStyle: const TextStyle(letterSpacing: 1),
                       fontSize: 25,
                       fontWeight: FontWeight.w900,
@@ -133,7 +133,7 @@ class _NewsDetailState extends State<NewsDetail> {
                   ),
                   Text(
                     widget.description,
-                    style: GoogleFonts.cormorantInfant(
+                    style: GoogleFonts.josefinSans(
                       textStyle: const TextStyle(letterSpacing: 1),
                       fontSize: 25,
                       fontWeight: FontWeight.w900,

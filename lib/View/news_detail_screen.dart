@@ -35,12 +35,12 @@ class _NewsDetailState extends State<NewsDetail> {
       backgroundColor: Colors.grey[400],
       appBar: AppBar(
         leading: const BackButton(
-          color: Colors.white,
-        ),
+            // color: Colors.white,
+            ),
         backgroundColor: Colors.blue[900],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 0, right: 3, bottom: 3, left: 3),
+        padding: const EdgeInsets.only(top: 0, right: 2, bottom: 2, left: 2),
         child: Stack(
           children: [
             Container(

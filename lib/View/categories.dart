@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_news/View/theme.dart';
 
 import 'package:flutter_news/model/news_categories_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
@@ -46,32 +47,32 @@ class _CategoriesState extends State<Categories> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      backgroundColor: Colors.grey[400],
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        title: const Center(child: Text("New's Categories")),
         leading: const BackButton(
           color: Colors.white,
         ),
         backgroundColor: Colors.blue[900],
       ),
       bottomNavigationBar: SalomonBottomBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Update the current index
-            // Navigate to the respective screens based on the selected index
+            _currentIndex = index;
             if (_currentIndex == 0) {
               Navigator.pushNamed(context, RoutesName.Home);
             } else if (_currentIndex == 2) {
-              Navigator.pushNamed(context, RoutesName.Categories);
+              Navigator.pushNamed(context, RoutesName.Home);
             }
           });
-        }, // Add currentIndex if needed
-
+        },
         items: [
-          // Home
+          //home
           SalomonBottomBarItem(
-            selectedColor: Colors.amber,
+            selectedColor:
+                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
             icon: const Icon(
               Icons.newspaper_rounded,
               size: 35,
@@ -85,9 +86,10 @@ class _CategoriesState extends State<Categories> {
               ),
             ),
           ),
-          // Topics
+          //topics
           SalomonBottomBarItem(
-            selectedColor: Colors.amber,
+            selectedColor:
+                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
             icon: const Icon(
               Icons.view_list_rounded,
               size: 35,
@@ -101,9 +103,10 @@ class _CategoriesState extends State<Categories> {
               ),
             ),
           ),
-          // Settings
+          //settings
           SalomonBottomBarItem(
-            selectedColor: Colors.amber,
+            selectedColor:
+                themeData.bottomNavigationBarTheme.selectedIconTheme?.color,
             icon: const Icon(
               Icons.settings_outlined,
               size: 35,
@@ -187,8 +190,9 @@ class _CategoriesState extends State<Categories> {
                       DateTime dateTime = DateTime.parse(publishedDate!);
                       String formattedDate =
                           DateFormat.yMMMd().format(dateTime);
+                      //this padding is for gap in between news rows
                       return Padding(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(3.5),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
@@ -214,83 +218,93 @@ class _CategoriesState extends State<Categories> {
                               ),
                             );
                           },
-                          child: Row(
+                          //container for colored(grey) background
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(5),
+                                    bottomRight: Radius.circular(5)),
+                                color: Colors.grey[400]),
+                            child: Row(
 
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                //*****image container******
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: CachedNetworkImage(
-                                    height: height * .18,
-                                    width: width * .5,
-                                    imageUrl: snapshot
-                                        .data!.articles![index].urlToImage
-                                        .toString(),
-                                    fit: BoxFit.cover,
-                                    placeholder: (context, url) =>
-                                        const SpinKitDancingSquare(
-                                      color: Colors.amber,
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(
-                                      Icons.api,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    // color: Colors.grey[400],
-                                    height: height * .18,
-                                    padding: const EdgeInsets.all(8),
-                                    child: Column(children: [
-                                      //*****title******
-                                      Text(
-                                        maxLines: 3,
-                                        snapshot.data!.articles![index].title
-                                            .toString(),
-                                        style: GoogleFonts.cormorantInfant(
-                                          textStyle: const TextStyle(
-                                            letterSpacing: 0,
-                                          ),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  //*****image container******
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: CachedNetworkImage(
+                                      height: height * .18,
+                                      width: width * .5,
+                                      imageUrl: snapshot
+                                          .data!.articles![index].urlToImage
+                                          .toString(),
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          const SpinKitDancingSquare(
+                                        color: Colors.amber,
                                       ),
-                                      const Spacer(),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          //*****source name******
-                                          Text(
-                                            overflow: TextOverflow.ellipsis,
-                                            snapshot.data!.articles![index]
-                                                .source!.name
-                                                .toString(),
-                                            style: GoogleFonts.cormorantInfant(
-                                              textStyle: const TextStyle(),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                          ),
-                                          //*****date******
-                                          Text(
-                                            Format.format(dateTime),
-                                            style: GoogleFonts.cormorantInfant(
-                                              textStyle: const TextStyle(),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ]),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(
+                                        Icons.api,
+                                        color: Colors.red,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ]),
+                                  Expanded(
+                                    child: Container(
+                                      // color: Colors.grey[400],
+                                      height: height * .18,
+                                      padding: const EdgeInsets.all(8),
+                                      child: Column(children: [
+                                        //*****title******
+                                        Text(
+                                          maxLines: 3,
+                                          snapshot.data!.articles![index].title
+                                              .toString(),
+                                          style: GoogleFonts.cormorantInfant(
+                                            textStyle: const TextStyle(
+                                              letterSpacing: 0,
+                                            ),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            //*****source name******
+                                            Text(
+                                              overflow: TextOverflow.ellipsis,
+                                              snapshot.data!.articles![index]
+                                                  .source!.name
+                                                  .toString(),
+                                              style:
+                                                  GoogleFonts.cormorantInfant(
+                                                textStyle: const TextStyle(),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                            ),
+                                            //*****date******
+                                            Text(
+                                              Format.format(dateTime),
+                                              style:
+                                                  GoogleFonts.cormorantInfant(
+                                                textStyle: const TextStyle(),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ]),
+                                    ),
+                                  ),
+                                ]),
+                          ),
                         ),
                       );
                     },

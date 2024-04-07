@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_news/View/theme.dart';
+import 'package:flutter_news/View/themeprovider.dart';
 
 import 'package:flutter_news/model/news_categories_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_news/view_model/routes_name.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Categories extends StatefulWidget {
@@ -44,10 +46,13 @@ class _CategoriesState extends State<Categories> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: themeProvider.isDarkTheme
+          ? DarkTheme.darkThemeData.scaffoldBackgroundColor
+          : LightTheme.lightThemeData.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Center(child: Text("New's Categories")),
         leading: BackButton(
@@ -197,10 +202,13 @@ class _CategoriesState extends State<Categories> {
                           //container for colored(grey) background
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(5),
-                                    bottomRight: Radius.circular(5)),
-                                color: LightTheme.containerColor),
+                              borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(5),
+                                  bottomRight: Radius.circular(5)),
+                              color: themeProvider.isDarkTheme
+                                  ? DarkTheme.darkContainerColor
+                                  : LightTheme.lightContainerColor,
+                            ),
                             child: Row(
 
                                 // mainAxisAlignment: MainAxisAlignment.start,

@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_news/View/theme.dart';
+import 'package:flutter_news/View/themeprovider.dart';
 
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Home extends StatefulWidget {
@@ -37,26 +39,39 @@ class _HomeState extends State<Home> {
 //it is also used in api as a parameter and in news_repository,future builder and in news view_model
   String channelName = 'bbc-news';
   final Format = DateFormat('yMMMMd');
+  // bool isDarkTheme = true;
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
 
     return Scaffold(
-      // backgroundColor: Colors.white,
+      backgroundColor: themeProvider.isDarkTheme
+          ? DarkTheme.darkThemeData.scaffoldBackgroundColor
+          : LightTheme.lightThemeData.scaffoldBackgroundColor,
+      // backgroundColor: ThemeData.dark().copyWith().scaffoldBackgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         // backgroundColor: Colors.blue[900],
         title: const Text(
           "Breaking New's",
-          // style: GoogleFonts.cormorantInfant(
-          //   textStyle: const TextStyle(letterSpacing: 3, color: Colors.white),
-          //   fontSize: 25,
-          //   fontWeight: FontWeight.w900,
-          // ),
         ),
+
         actions: [
+          IconButton(
+            onPressed: () {
+              final themeProvider =
+                  Provider.of<ThemeProvider>(context, listen: false);
+              themeProvider.toggleTheme();
+            },
+            icon: Icon(
+              Provider.of<ThemeProvider>(context).isDarkTheme
+                  ? Icons.nightlight_round
+                  : Icons.wb_sunny_rounded,
+            ),
+          ),
           PopupMenuButton<NewsFilterList>(
               // iconColor: Colors.white,
 
@@ -95,8 +110,10 @@ class _HomeState extends State<Home> {
         ],
       ),
       bottomNavigationBar: SalomonBottomBar(
-        backgroundColor:
-            LightTheme.lightThemeData.bottomNavigationBarTheme.backgroundColor,
+        backgroundColor: themeProvider.isDarkTheme
+            ? DarkTheme.darkThemeData.bottomNavigationBarTheme.backgroundColor
+            : LightTheme
+                .lightThemeData.bottomNavigationBarTheme.backgroundColor,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -139,7 +156,6 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-
       body: SafeArea(
         child: FutureBuilder<NewsChannelHeadlinesModel>(
           future: newsViewModel.fetchNewsChannelHeadlinesApi(channelName),
@@ -198,11 +214,17 @@ class _HomeState extends State<Home> {
                           child: Container(
                             height: MediaQuery.of(context).size.height * .80,
                             decoration: BoxDecoration(
+                              //container border color
                               border: Border.all(
-                                  color: LightTheme.containerBorderColor,
+                                  color: themeProvider.isDarkTheme
+                                      ? DarkTheme.darkContainerBorderColor
+                                      : LightTheme.lightContainerBorderColor,
                                   width: 2.0),
                               borderRadius: BorderRadius.circular(15),
-                              color: LightTheme.containerColor,
+                              //container color
+                              color: themeProvider.isDarkTheme
+                                  ? DarkTheme.darkContainerColor
+                                  : LightTheme.lightContainerColor,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,

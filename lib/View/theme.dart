@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LightTheme {
-  // static Color lightbackgroundColor = Colors.white;
+  static Color lightFontColor = Colors.black;
+
   static Color lightContainerColor = Colors.grey.shade400;
   static const Color lightContainerBorderColor = Colors.grey;
 
@@ -35,15 +36,14 @@ class LightTheme {
 
 //darktheme
 class DarkTheme {
-  // static Color darkbackgroundColor = Colors.black;
-  static Color darkContainerColor = Colors.black;
-  static const Color darkContainerBorderColor = Colors.black;
+  static Color darkFontColor = Colors.white;
+  static Color darkContainerColor = Colors.black54;
+  static const Color darkContainerBorderColor = Colors.grey;
 
   static final ThemeData darkThemeData = ThemeData(
-      scaffoldBackgroundColor: Colors.black,
-
       //background color
-      colorScheme: ColorScheme.light(background: Colors.black),
+      scaffoldBackgroundColor: Colors.blueGrey.shade900,
+
       //appbar
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.blue[900],

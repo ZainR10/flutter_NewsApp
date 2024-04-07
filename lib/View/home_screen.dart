@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
   NewsFilterList? selectedMenu;
 //default channel and parameter for filtering and fetching desired channel from api
 //it is also used in api as a parameter and in news_repository,future builder and in news view_model
-  String channelName = 'bbc-news';
+  String channelName = 'al-jazeera-english';
   final Format = DateFormat('yMMMMd');
   // bool isDarkTheme = true;
 
@@ -77,7 +77,7 @@ class _HomeState extends State<Home> {
 
               onSelected: (NewsFilterList item) {
                 if (NewsFilterList.alJazeera.name == item.name) {
-                  channelName = '"al-jazeera-english';
+                  channelName = 'al-jazeera-english';
                 }
                 if (NewsFilterList.aryNews.name == item.name) {
                   channelName = 'ary-news';
@@ -261,9 +261,11 @@ class _HomeState extends State<Home> {
                                     snapshot.data!.articles![index].title
                                         .toString(),
                                     style: GoogleFonts.josefinSans(
-                                      textStyle: const TextStyle(
+                                      textStyle: TextStyle(
                                           letterSpacing: 2,
-                                          color: Colors.black),
+                                          color: themeProvider.isDarkTheme
+                                              ? DarkTheme.darkFontColor
+                                              : LightTheme.lightFontColor),
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -281,9 +283,11 @@ class _HomeState extends State<Home> {
                                       child: Text(
                                         'Published at:',
                                         style: GoogleFonts.josefinSans(
-                                          textStyle: const TextStyle(
+                                          textStyle: TextStyle(
                                               letterSpacing: 0,
-                                              color: Colors.black),
+                                              color: themeProvider.isDarkTheme
+                                                  ? DarkTheme.darkFontColor
+                                                  : LightTheme.lightFontColor),
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -295,9 +299,11 @@ class _HomeState extends State<Home> {
                                       child: Text(
                                         Format.format(dateTime),
                                         style: GoogleFonts.josefinSans(
-                                          textStyle: const TextStyle(
+                                          textStyle: TextStyle(
                                               letterSpacing: 0,
-                                              color: Colors.black),
+                                              color: themeProvider.isDarkTheme
+                                                  ? DarkTheme.darkFontColor
+                                                  : LightTheme.lightFontColor),
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -314,7 +320,10 @@ class _HomeState extends State<Home> {
                                     snapshot.data!.articles![index].author
                                         .toString(),
                                     style: GoogleFonts.josefinSans(
-                                      textStyle: const TextStyle(
+                                      textStyle: TextStyle(
+                                        color: themeProvider.isDarkTheme
+                                            ? DarkTheme.darkFontColor
+                                            : LightTheme.lightFontColor,
                                         letterSpacing: 0,
                                       ),
                                       fontSize: 20,

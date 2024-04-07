@@ -64,8 +64,10 @@ class _CategoriesState extends State<Categories> {
         // backgroundColor: Colors.blue[900],
       ),
       bottomNavigationBar: SalomonBottomBar(
-        backgroundColor:
-            LightTheme.lightThemeData.bottomNavigationBarTheme.backgroundColor,
+        backgroundColor: themeProvider.isDarkTheme
+            ? DarkTheme.darkThemeData.bottomNavigationBarTheme.backgroundColor
+            : LightTheme
+                .lightThemeData.bottomNavigationBarTheme.backgroundColor,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -247,7 +249,10 @@ class _CategoriesState extends State<Categories> {
                                           snapshot.data!.articles![index].title
                                               .toString(),
                                           style: GoogleFonts.josefinSans(
-                                            textStyle: const TextStyle(
+                                            textStyle: TextStyle(
+                                              color: themeProvider.isDarkTheme
+                                                  ? DarkTheme.darkFontColor
+                                                  : LightTheme.lightFontColor,
                                               letterSpacing: 0,
                                             ),
                                             fontSize: 20,
@@ -266,7 +271,13 @@ class _CategoriesState extends State<Categories> {
                                                   .source!.name
                                                   .toString(),
                                               style: GoogleFonts.josefinSans(
-                                                textStyle: const TextStyle(),
+                                                textStyle: TextStyle(
+                                                    color: themeProvider
+                                                            .isDarkTheme
+                                                        ? DarkTheme
+                                                            .darkFontColor
+                                                        : LightTheme
+                                                            .lightFontColor),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w900,
                                               ),
@@ -275,7 +286,13 @@ class _CategoriesState extends State<Categories> {
                                             Text(
                                               Format.format(dateTime),
                                               style: GoogleFonts.josefinSans(
-                                                textStyle: const TextStyle(),
+                                                textStyle: TextStyle(
+                                                    color: themeProvider
+                                                            .isDarkTheme
+                                                        ? DarkTheme
+                                                            .darkFontColor
+                                                        : LightTheme
+                                                            .lightFontColor),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w900,
                                               ),

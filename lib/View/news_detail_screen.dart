@@ -151,6 +151,8 @@ class _NewsDetailState extends State<NewsDetail> {
                 SizedBox(
                   height: height * .02,
                 ),
+                //description
+
                 Text(
                   widget.description,
                   style: GoogleFonts.josefinSans(

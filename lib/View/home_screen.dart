@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_news/View/search.dart';
 
 import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_news/View/themeprovider.dart';
 
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
+
 import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:flutter_news/view_model/routes.dart';
 import 'package:flutter_news/view_model/routes_name.dart';
@@ -39,7 +41,7 @@ class _HomeState extends State<Home> {
 //it is also used in api as a parameter and in news_repository,future builder and in news view_model
   String channelName = 'al-jazeera-english';
   final Format = DateFormat('yMMMMd');
-  // bool isDarkTheme = true;
+  TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +54,11 @@ class _HomeState extends State<Home> {
       backgroundColor: themeProvider.isDarkTheme
           ? DarkTheme.darkThemeData.scaffoldBackgroundColor
           : LightTheme.lightThemeData.scaffoldBackgroundColor,
-      // backgroundColor: ThemeData.dark().copyWith().scaffoldBackgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        // backgroundColor: Colors.blue[900],
         title: const Text(
           "Breaking New's",
         ),
-
         actions: [
           IconButton(
             onPressed: () {
@@ -75,9 +74,6 @@ class _HomeState extends State<Home> {
           ),
           PopupMenuButton<NewsFilterList>(
               offset: Offset(0.0, appBarHeight),
-
-              // iconColor: Colors.white,
-              // color: Colors.amber,
               onSelected: (NewsFilterList item) {
                 if (NewsFilterList.alJazeera.name == item.name) {
                   channelName = 'al-jazeera-english';
@@ -330,6 +326,7 @@ class _HomeState extends State<Home> {
                                 ),
                                 const SizedBox(height: 10),
                                 //*****auther ****
+
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 0, horizontal: 20),

@@ -1,5 +1,6 @@
 import 'package:flutter_news/model/news_categories_model.dart';
 import 'package:flutter_news/model/news_channel_headlines_model.dart';
+
 import 'package:flutter_news/repository/news_repository.dart';
 
 class NewsViewModel {

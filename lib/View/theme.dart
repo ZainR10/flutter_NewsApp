@@ -8,9 +8,31 @@ class LightTheme {
   static const Color lightContainerBorderColor = Colors.grey;
 
   static final ThemeData lightThemeData = ThemeData(
-      scaffoldBackgroundColor: Colors.white,
+      popupMenuTheme: PopupMenuThemeData(
+          color: Colors.grey.shade400,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(8.0),
+              bottomRight: Radius.circular(8.0),
+              topLeft: Radius.circular(8.0),
+              topRight: Radius.circular(8.0),
+            ),
+          ),
+          textStyle: GoogleFonts.josefinSans(
+              textStyle: const TextStyle(letterSpacing: 1, color: Colors.black),
+              fontSize: 15,
+              fontWeight: FontWeight.w900)),
+
       //background color
-      colorScheme: const ColorScheme.light(background: Colors.white),
+      scaffoldBackgroundColor: Colors.white,
+      dividerColor: Colors.black,
+      //divider
+      dividerTheme: const DividerThemeData(
+          color: Colors.black,
+          endIndent: 8,
+          indent: 8,
+          thickness: 2,
+          space: 10),
       //appbar
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.blue[900],
@@ -41,9 +63,30 @@ class DarkTheme {
   static const Color darkContainerBorderColor = Colors.grey;
 
   static final ThemeData darkThemeData = ThemeData(
+      popupMenuTheme: PopupMenuThemeData(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(8.0),
+              bottomRight: Radius.circular(8.0),
+              topLeft: Radius.circular(8.0),
+              topRight: Radius.circular(8.0),
+            ),
+          ),
+          color: Colors.blueGrey.shade400,
+          textStyle: GoogleFonts.josefinSans(
+              textStyle: const TextStyle(letterSpacing: 1, color: Colors.white),
+              fontSize: 15,
+              fontWeight: FontWeight.w900)),
       //background color
       scaffoldBackgroundColor: Colors.blueGrey.shade900,
-
+//divider
+      dividerColor: Colors.white,
+      dividerTheme: const DividerThemeData(
+        // color: Colors.white,
+        endIndent: 8,
+        indent: 8,
+        thickness: 2,
+      ),
       //appbar
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.blue[900],

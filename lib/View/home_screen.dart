@@ -46,6 +46,7 @@ class _HomeState extends State<Home> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
+    var appBarHeight = AppBar().preferredSize.height;
 
     return Scaffold(
       backgroundColor: themeProvider.isDarkTheme
@@ -68,13 +69,15 @@ class _HomeState extends State<Home> {
             },
             icon: Icon(
               Provider.of<ThemeProvider>(context).isDarkTheme
-                  ? Icons.nightlight_round
-                  : Icons.wb_sunny_rounded,
+                  ? Icons.nightlight_round_sharp
+                  : Icons.wb_sunny_sharp,
             ),
           ),
           PopupMenuButton<NewsFilterList>(
-              // iconColor: Colors.white,
+              offset: Offset(0.0, appBarHeight),
 
+              // iconColor: Colors.white,
+              // color: Colors.amber,
               onSelected: (NewsFilterList item) {
                 if (NewsFilterList.alJazeera.name == item.name) {
                   channelName = 'al-jazeera-english';
@@ -94,17 +97,31 @@ class _HomeState extends State<Home> {
               icon: const Icon(Icons.more_vert_rounded),
               itemBuilder: (BuildContext context) =>
                   <PopupMenuEntry<NewsFilterList>>[
-                    const PopupMenuItem<NewsFilterList>(
+                    PopupMenuItem<NewsFilterList>(
                       value: NewsFilterList.alJazeera,
-                      child: Text('Al Jazeera'),
+                      child: Text(
+                        'Al Jazeera',
+                        style: themeProvider.isDarkTheme
+                            ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
+                            : LightTheme
+                                .lightThemeData.popupMenuTheme.textStyle,
+                      ),
                     ),
-                    const PopupMenuItem<NewsFilterList>(
+                    PopupMenuItem<NewsFilterList>(
                       value: NewsFilterList.bbcNews,
-                      child: Text('BBC News'),
+                      child: Text('BBC News',
+                          style: themeProvider.isDarkTheme
+                              ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
+                              : LightTheme
+                                  .lightThemeData.popupMenuTheme.textStyle),
                     ),
-                    const PopupMenuItem<NewsFilterList>(
+                    PopupMenuItem<NewsFilterList>(
                       value: NewsFilterList.aryNews,
-                      child: Text('Ary News'),
+                      child: Text('Ary News',
+                          style: themeProvider.isDarkTheme
+                              ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
+                              : LightTheme
+                                  .lightThemeData.popupMenuTheme.textStyle),
                     )
                   ]),
         ],
@@ -164,7 +181,7 @@ class _HomeState extends State<Home> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: SpinKitDancingSquare(
-                  size: 20,
+                  size: 50,
                   color: Colors.amber,
                 ),
               );

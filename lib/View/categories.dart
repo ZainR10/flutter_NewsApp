@@ -30,12 +30,13 @@ class _CategoriesState extends State<Categories> {
 
   List<String> categoriesList = [
     'General',
+    'Politics',
+    'Technology',
+    'Fashion',
     'Entertainment',
+    'Business',
     'Health',
     'Sports',
-    'Business',
-    'Technology',
-    'Politics'
   ];
   @override
   void initState() {
@@ -139,7 +140,7 @@ class _CategoriesState extends State<Categories> {
                                     letterSpacing: 1,
                                   ),
                                   fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                             ),
@@ -150,6 +151,21 @@ class _CategoriesState extends State<Categories> {
                   }),
             ),
           ),
+          Divider(
+            color: themeProvider.isDarkTheme
+                ? DarkTheme.darkThemeData.dividerColor
+                : LightTheme.lightThemeData.dividerColor,
+            height: 10,
+            indent: themeProvider.isDarkTheme
+                ? DarkTheme.darkThemeData.dividerTheme.indent
+                : LightTheme.lightThemeData.dividerTheme.indent,
+            endIndent: themeProvider.isDarkTheme
+                ? DarkTheme.darkThemeData.dividerTheme.endIndent
+                : LightTheme.lightThemeData.dividerTheme.endIndent,
+            thickness: themeProvider.isDarkTheme
+                ? DarkTheme.darkThemeData.dividerTheme.thickness
+                : LightTheme.lightThemeData.dividerTheme.thickness,
+          ),
           Expanded(
             child: FutureBuilder<NewsCategoriesModel>(
               future: newsViewModel.fetchNewsCategoriesApi(categoryName),
@@ -158,7 +174,7 @@ class _CategoriesState extends State<Categories> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                     child: SpinKitDancingSquare(
-                      size: 20,
+                      size: 50,
                       color: Colors.amber,
                     ),
                   );

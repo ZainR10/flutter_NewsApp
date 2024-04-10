@@ -47,6 +47,7 @@ class _NewsDetailState extends State<NewsDetail> {
         leading: const BackButton(),
       ),
       body: Stack(
+        alignment: Alignment.topCenter,
         children: [
           Container(
             height: height * .35,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/View/categories.dart';
 import 'package:flutter_news/View/home_screen.dart';
 import 'package:flutter_news/View/news_detail_screen.dart';
-import 'package:flutter_news/View/search.dart';
 import 'package:flutter_news/View/splash_screen.dart';
 import 'package:flutter_news/view_model/routes_name.dart';
 

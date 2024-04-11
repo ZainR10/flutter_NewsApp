@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
@@ -50,7 +52,7 @@ class _NewsDetailState extends State<NewsDetail> {
         alignment: Alignment.topCenter,
         children: [
           Container(
-            height: height * .35,
+            // height: height * .35,
             child: ClipRRect(
               // borderRadius: const BorderRadius.only(
               //   topRight: Radius.circular(20),
@@ -73,8 +75,8 @@ class _NewsDetailState extends State<NewsDetail> {
             ),
           ),
           Container(
-            height: height * .8,
-            margin: EdgeInsets.only(top: height * .35),
+            // height: height * .8,
+            margin: EdgeInsets.only(top: height * .27),
             padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
             decoration: BoxDecoration(
               color: themeProvider.isDarkTheme
@@ -114,7 +116,7 @@ class _NewsDetailState extends State<NewsDetail> {
                               : LightTheme.lightFontColor,
                           letterSpacing: 1,
                         ),
-                        fontSize: 20,
+                        fontSize: 14,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -127,7 +129,7 @@ class _NewsDetailState extends State<NewsDetail> {
                             color: themeProvider.isDarkTheme
                                 ? DarkTheme.darkFontColor
                                 : LightTheme.lightFontColor),
-                        fontSize: 20,
+                        fontSize: 14,
                         fontWeight: FontWeight.w900,
                       ),
                     ),

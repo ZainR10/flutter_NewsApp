@@ -1,7 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_news/View/search.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_news/View/themeprovider.dart';
@@ -41,7 +43,6 @@ class _HomeState extends State<Home> {
 //it is also used in api as a parameter and in news_repository,future builder and in news view_model
   String channelName = 'al-jazeera-english';
   final Format = DateFormat('yMMMMd');
-  TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -183,11 +184,11 @@ class _HomeState extends State<Home> {
               );
             } else {
               return PageView.builder(
-                // physics: FixedExtentScrollPhysics(),
+                physics: FixedExtentScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return ListView.builder(
-                    physics: const FixedExtentScrollPhysics(),
+                    // physics: const FixedExtentScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     itemCount: snapshot.data?.articles?.length ?? 0,
                     itemBuilder: (context, index) {
@@ -227,7 +228,8 @@ class _HomeState extends State<Home> {
                           },
                           //main container for holding all content
                           child: Container(
-                            // height: MediaQuery.of(context).size.height * .80,
+                            height: MediaQuery.of(context).size.height * .70,
+                            // width: MediaQuery.of(context).size.width * .,
                             decoration: BoxDecoration(
                               //container border color
                               border: Border.all(
@@ -288,43 +290,48 @@ class _HomeState extends State<Home> {
                                 ),
                                 const SizedBox(height: 10),
                                 //****date******
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 0, horizontal: 20),
-                                      child: Text(
-                                        'Published at:',
-                                        style: GoogleFonts.josefinSans(
-                                          textStyle: TextStyle(
-                                              letterSpacing: 0,
-                                              color: themeProvider.isDarkTheme
-                                                  ? DarkTheme.darkFontColor
-                                                  : LightTheme.lightFontColor),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
+                                Padding(
+                                  padding: EdgeInsets.only(right: 10),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 0, horizontal: 20),
+                                        child: Text(
+                                          'Published at:',
+                                          style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                letterSpacing: 0,
+                                                color: themeProvider.isDarkTheme
+                                                    ? DarkTheme.darkFontColor
+                                                    : LightTheme
+                                                        .lightFontColor),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 0, horizontal: 20),
-                                      child: Text(
-                                        Format.format(dateTime),
-                                        style: GoogleFonts.josefinSans(
-                                          textStyle: TextStyle(
-                                              letterSpacing: 0,
-                                              color: themeProvider.isDarkTheme
-                                                  ? DarkTheme.darkFontColor
-                                                  : LightTheme.lightFontColor),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 0, horizontal: 0),
+                                        child: Text(
+                                          Format.format(dateTime),
+                                          style: GoogleFonts.josefinSans(
+                                            textStyle: TextStyle(
+                                                letterSpacing: 0,
+                                                color: themeProvider.isDarkTheme
+                                                    ? DarkTheme.darkFontColor
+                                                    : LightTheme
+                                                        .lightFontColor),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(height: 10),
                                 //*****auther ****

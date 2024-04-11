@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_news/View/themeprovider.dart';
 
@@ -297,7 +296,7 @@ class _CategoriesState extends State<Categories> {
                                                             .darkFontColor
                                                         : LightTheme
                                                             .lightFontColor),
-                                                fontSize: 14,
+                                                fontSize: 10,
                                                 fontWeight: FontWeight.w900,
                                               ),
                                             ),
@@ -312,7 +311,7 @@ class _CategoriesState extends State<Categories> {
                                                             .darkFontColor
                                                         : LightTheme
                                                             .lightFontColor),
-                                                fontSize: 14,
+                                                fontSize: 10,
                                                 fontWeight: FontWeight.w900,
                                               ),
                                             ),

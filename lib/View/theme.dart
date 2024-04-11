@@ -72,7 +72,7 @@ class DarkTheme {
               topRight: Radius.circular(8.0),
             ),
           ),
-          color: Colors.blueGrey.shade400,
+          color: Colors.black54,
           textStyle: GoogleFonts.josefinSans(
               textStyle: const TextStyle(letterSpacing: 1, color: Colors.white),
               fontSize: 15,

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_news/View/themeprovider.dart';
 
@@ -191,7 +192,7 @@ class _CategoriesState extends State<Categories> {
                           DateFormat.yMMMd().format(dateTime);
                       //this padding is for gap in between news rows
                       return Padding(
-                        padding: const EdgeInsets.all(3.5),
+                        padding: const EdgeInsets.all(3),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
@@ -277,6 +278,8 @@ class _CategoriesState extends State<Categories> {
                                         ),
                                         const Spacer(),
                                         Row(
+                                          // crossAxisAlignment:
+                                          //     CrossAxisAlignment.stretch,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [

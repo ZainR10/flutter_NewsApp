@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
 
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 5), () {
       Navigator.pushNamed(context, 'home_screen');
     });
   }
@@ -29,33 +31,53 @@ class _SplashScreenState extends State<SplashScreen> {
     final width = MediaQuery.sizeOf(context).width * 1;
     return Scaffold(
         // backgroundColor: Colors.black,
-        body: Container(
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Image.asset(
-              // color: Colors.indigoAccent,
-              // colorBlendMode: BlendMode.saturation,
-              'assets/splashscreen.jpg',
-              fit: BoxFit.cover,
-              height: height * 1,
-              width: width * 1,
+        body: Stack(children: [
+      Expanded(
+        child: Image.asset(
+          // color: Colors.indigoAccent,
+          // colorBlendMode: BlendMode.saturation,
+          'assets/splashscreen.jpg',
+          fit: BoxFit.cover,
+          height: height * 1,
+          width: width * 1,
+        ),
+      ),
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+        child: Container(
+          color: Colors.black.withOpacity(0.5), // Adjust opacity as needed
+          height: height,
+          width: width,
+        ),
+      ),
+      Center(
+        child: Container(
+          height: height * .25,
+          width: width * .50,
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.indigo.shade400
+                      .withOpacity(0.5), // Adjust opacity as needed
+                  spreadRadius: 10,
+                  blurRadius: 30,
+                  offset: const Offset(0, 9), // changes position of shadow
+                ),
+              ],
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: Center(
+            child: Text(
+              'News\nNest',
+              style: GoogleFonts.rubik80sFade(
+                  textStyle:
+                      const TextStyle(letterSpacing: 4, color: Colors.white),
+                  fontSize: 50,
+                  fontWeight: FontWeight.w900),
             ),
           ),
-          // Center(
-          //   child: Text(
-          //     'News',
-          //     style: GoogleFonts.josefinSans(
-          //         textStyle:
-          //             const TextStyle(letterSpacing: 1, color: Colors.black),
-          //         fontSize: 50,
-          //         fontWeight: FontWeight.w900),
-          //   ),
-          // )
-        ],
-      ),
-    ));
+        ),
+      )
+    ]));
   }
 }

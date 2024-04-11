@@ -183,9 +183,11 @@ class _HomeState extends State<Home> {
               );
             } else {
               return PageView.builder(
+                // physics: FixedExtentScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return ListView.builder(
+                    physics: const FixedExtentScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     itemCount: snapshot.data?.articles?.length ?? 0,
                     itemBuilder: (context, index) {
@@ -196,7 +198,7 @@ class _HomeState extends State<Home> {
                       String formattedDate =
                           DateFormat.yMMMd().format(dateTime);
                       return Padding(
-                        padding: const EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(20),
                         //to naviget for full news.
                         child: InkWell(
                           onTap: () {
@@ -225,7 +227,7 @@ class _HomeState extends State<Home> {
                           },
                           //main container for holding all content
                           child: Container(
-                            height: MediaQuery.of(context).size.height * .80,
+                            // height: MediaQuery.of(context).size.height * .80,
                             decoration: BoxDecoration(
                               //container border color
                               border: Border.all(

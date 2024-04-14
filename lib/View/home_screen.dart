@@ -3,7 +3,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_news/View/themeprovider.dart';
@@ -21,7 +20,7 @@ import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -41,7 +40,7 @@ class _HomeState extends State<Home> {
   NewsFilterList? selectedMenu;
 //default channel and parameter for filtering and fetching desired channel from api
 //it is also used in api as a parameter and in news_repository,future builder and in news view_model
-  String channelName = 'al-jazeera-english';
+  String channelName = 'bbc-news';
   final Format = DateFormat('yMMMMd');
 
   @override
@@ -184,7 +183,7 @@ class _HomeState extends State<Home> {
               );
             } else {
               return PageView.builder(
-                physics: FixedExtentScrollPhysics(),
+                // physics: FixedExtentScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return ListView.builder(
@@ -228,7 +227,7 @@ class _HomeState extends State<Home> {
                           },
                           //main container for holding all content
                           child: Container(
-                            height: MediaQuery.of(context).size.height * .70,
+                            // height: MediaQuery.of(context).size.height * .80,
                             // width: MediaQuery.of(context).size.width * .,
                             decoration: BoxDecoration(
                               //container border color
@@ -291,7 +290,7 @@ class _HomeState extends State<Home> {
                                 const SizedBox(height: 10),
                                 //****date******
                                 Padding(
-                                  padding: EdgeInsets.only(right: 10),
+                                  padding: const EdgeInsets.only(right: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

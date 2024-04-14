@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_news/View/themeprovider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -51,32 +52,29 @@ class _NewsDetailState extends State<NewsDetail> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          Container(
-            // height: height * .35,
-            child: ClipRRect(
-              // borderRadius: const BorderRadius.only(
-              //   topRight: Radius.circular(20),
-              //   topLeft: Radius.circular(20),
-              //   bottomLeft: Radius.circular(0),
-              // ),
-              child: CachedNetworkImage(
-                fit: BoxFit.contain,
-                imageUrl: widget.newsImage,
-                placeholder: (context, url) => const Center(
-                  child: SpinKitDancingSquare(
-                    color: Colors.amber,
-                  ),
+          ClipRRect(
+            // borderRadius: const BorderRadius.only(
+            //   topRight: Radius.circular(20),
+            //   topLeft: Radius.circular(20),
+            //   bottomLeft: Radius.circular(0),
+            // ),
+            child: CachedNetworkImage(
+              fit: BoxFit.contain,
+              imageUrl: widget.newsImage,
+              placeholder: (context, url) => const Center(
+                child: SpinKitDancingSquare(
+                  color: Colors.amber,
                 ),
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.api,
-                  color: Colors.red,
-                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(
+                Icons.api,
+                color: Colors.red,
               ),
             ),
           ),
           Container(
             // height: height * .8,
-            margin: EdgeInsets.only(top: height * .27),
+            margin: EdgeInsets.only(top: height * .30),
             padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
             decoration: BoxDecoration(
               color: themeProvider.isDarkTheme

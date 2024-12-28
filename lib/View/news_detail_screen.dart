@@ -3,7 +3,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_news/View/theme.dart';
 import 'package:flutter_news/View/themeprovider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -40,55 +39,23 @@ class _NewsDetailState extends State<NewsDetail> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      backgroundColor: themeProvider.isDarkTheme
-          ? DarkTheme.darkThemeData.scaffoldBackgroundColor
-          : LightTheme.lightThemeData.scaffoldBackgroundColor,
-      appBar: AppBar(
-        title: const Center(
-          child: Text('Full Article'),
-        ),
-        leading: const BackButton(),
-      ),
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          ClipRRect(
-            // borderRadius: const BorderRadius.only(
-            //   topRight: Radius.circular(20),
-            //   topLeft: Radius.circular(20),
-            //   bottomLeft: Radius.circular(0),
-            // ),
-            child: CachedNetworkImage(
-              fit: BoxFit.contain,
-              imageUrl: widget.newsImage,
-              placeholder: (context, url) => const Center(
-                child: SpinKitDancingSquare(
-                  color: Colors.amber,
-                ),
-              ),
-              errorWidget: (context, url, error) => const Icon(
-                Icons.api,
-                color: Colors.red,
-              ),
-            ),
+        backgroundColor: themeProvider.isDarkTheme
+            ? DarkTheme.darkThemeData.scaffoldBackgroundColor
+            : LightTheme.lightThemeData.scaffoldBackgroundColor,
+        appBar: AppBar(
+          title: const Center(
+            child: Text('Full Article'),
           ),
-          Container(
-            // height: height * .8,
-            margin: EdgeInsets.only(top: height * .30),
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-            decoration: BoxDecoration(
-              color: themeProvider.isDarkTheme
-                  ? DarkTheme.darkContainerColor
-                  : LightTheme.lightContainerColor,
-              // borderRadius: const BorderRadius.only(
-              //     topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-            ),
+        ),
+        body: Column(children: [
+          Expanded(
             child: ListView(
+              padding: const EdgeInsets.all(10),
               children: [
                 //title
                 Text(
                   widget.newsTitle,
-                  style: GoogleFonts.josefinSans(
+                  style: GoogleFonts.actor(
                     textStyle: TextStyle(
                         letterSpacing: 0,
                         color: themeProvider.isDarkTheme
@@ -96,6 +63,20 @@ class _NewsDetailState extends State<NewsDetail> {
                             : LightTheme.lightFontColor),
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
+                  ),
+                ),
+
+                ClipRRect(
+                  child: CachedNetworkImage(
+                    imageUrl: widget.newsImage,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => const SpinKitDancingSquare(
+                      color: Colors.amber,
+                    ),
+                    errorWidget: (context, url, error) => const Icon(
+                      Icons.api,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -107,7 +88,7 @@ class _NewsDetailState extends State<NewsDetail> {
                     //news source
                     Text(
                       widget.source,
-                      style: GoogleFonts.josefinSans(
+                      style: GoogleFonts.actor(
                         textStyle: TextStyle(
                           color: themeProvider.isDarkTheme
                               ? DarkTheme.darkFontColor
@@ -121,7 +102,7 @@ class _NewsDetailState extends State<NewsDetail> {
                     //date
                     Text(
                       widget.newsDate,
-                      style: GoogleFonts.josefinSans(
+                      style: GoogleFonts.actor(
                         textStyle: TextStyle(
                             letterSpacing: 1,
                             color: themeProvider.isDarkTheme
@@ -138,7 +119,7 @@ class _NewsDetailState extends State<NewsDetail> {
                 ),
                 Text(
                   widget.content,
-                  style: GoogleFonts.josefinSans(
+                  style: GoogleFonts.actor(
                     textStyle: TextStyle(
                         letterSpacing: 1,
                         color: themeProvider.isDarkTheme
@@ -155,7 +136,7 @@ class _NewsDetailState extends State<NewsDetail> {
 
                 Text(
                   widget.description,
-                  style: GoogleFonts.josefinSans(
+                  style: GoogleFonts.actor(
                     textStyle: TextStyle(
                         letterSpacing: 1,
                         color: themeProvider.isDarkTheme
@@ -167,9 +148,7 @@ class _NewsDetailState extends State<NewsDetail> {
                 ),
               ],
             ),
-          )
-        ],
-      ),
-    );
+          ),
+        ]));
   }
 }

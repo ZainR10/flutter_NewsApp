@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/View/themeprovider.dart';
+import 'package:flutter_news/view_model/bottom_navbar_provider.dart';
 import 'package:flutter_news/view_model/routes.dart';
 import 'package:flutter_news/view_model/routes_name.dart';
 import 'package:provider/provider.dart';
@@ -18,16 +19,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
-        return MaterialApp(
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ThemeProvider()),
+          ChangeNotifierProvider(create: (_) => BottomNavbarState()),
+        ],
+        child: const MaterialApp(
           title: 'Flutter Demo',
-          theme: themeProvider.getTheme(),
           debugShowCheckedModeBanner: false,
           initialRoute: RoutesName.SplashScreen,
           onGenerateRoute: Routes.generateRoute,
-        );
-      },
-    );
+        ));
   }
 }

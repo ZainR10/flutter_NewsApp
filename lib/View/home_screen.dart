@@ -12,12 +12,13 @@ import 'package:flutter_news/model/news_channel_headlines_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:flutter_news/view_model/routes.dart';
 import 'package:flutter_news/view_model/routes_name.dart';
+import 'package:flutter_news/widgets/appbar.dart';
+import 'package:flutter_news/widgets/bottom_navbar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -34,7 +35,6 @@ enum NewsFilterList {
 }
 
 class _HomeState extends State<Home> {
-  int _currentIndex = 0;
   NewsViewModel newsViewModel = NewsViewModel();
 //default channel variable
   NewsFilterList? selectedMenu;
@@ -48,127 +48,17 @@ class _HomeState extends State<Home> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
-    var appBarHeight = AppBar().preferredSize.height;
+    // var appBarHeight = AppBar().preferredSize.height;
 
     return Scaffold(
+      appBar: const PreferredSize(
+        preferredSize: Size(0, 59),
+        child: ReuseableAppbar(),
+      ),
       backgroundColor: themeProvider.isDarkTheme
           ? DarkTheme.darkThemeData.scaffoldBackgroundColor
           : LightTheme.lightThemeData.scaffoldBackgroundColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text(
-          "Breaking New's",
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              final themeProvider =
-                  Provider.of<ThemeProvider>(context, listen: false);
-              themeProvider.toggleTheme();
-            },
-            icon: Icon(
-              Provider.of<ThemeProvider>(context).isDarkTheme
-                  ? Icons.nightlight_round_sharp
-                  : Icons.wb_sunny_sharp,
-            ),
-          ),
-          PopupMenuButton<NewsFilterList>(
-              offset: Offset(0.0, appBarHeight),
-              onSelected: (NewsFilterList item) {
-                if (NewsFilterList.alJazeera.name == item.name) {
-                  channelName = 'al-jazeera-english';
-                }
-                if (NewsFilterList.aryNews.name == item.name) {
-                  channelName = 'ary-news';
-                }
-                if (NewsFilterList.bbcNews.name == item.name) {
-                  channelName = 'bbc-news';
-                }
-                //changes news channel  on selection
-                setState(() {
-                  selectedMenu = item;
-                });
-              },
-              initialValue: selectedMenu,
-              icon: const Icon(Icons.more_vert_rounded),
-              itemBuilder: (BuildContext context) =>
-                  <PopupMenuEntry<NewsFilterList>>[
-                    PopupMenuItem<NewsFilterList>(
-                      value: NewsFilterList.alJazeera,
-                      child: Text(
-                        'Al Jazeera',
-                        style: themeProvider.isDarkTheme
-                            ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
-                            : LightTheme
-                                .lightThemeData.popupMenuTheme.textStyle,
-                      ),
-                    ),
-                    PopupMenuItem<NewsFilterList>(
-                      value: NewsFilterList.bbcNews,
-                      child: Text('BBC News',
-                          style: themeProvider.isDarkTheme
-                              ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
-                              : LightTheme
-                                  .lightThemeData.popupMenuTheme.textStyle),
-                    ),
-                    PopupMenuItem<NewsFilterList>(
-                      value: NewsFilterList.aryNews,
-                      child: Text('Ary News',
-                          style: themeProvider.isDarkTheme
-                              ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
-                              : LightTheme
-                                  .lightThemeData.popupMenuTheme.textStyle),
-                    )
-                  ]),
-        ],
-      ),
-      bottomNavigationBar: SalomonBottomBar(
-        backgroundColor: themeProvider.isDarkTheme
-            ? DarkTheme.darkThemeData.bottomNavigationBarTheme.backgroundColor
-            : LightTheme
-                .lightThemeData.bottomNavigationBarTheme.backgroundColor,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-            if (_currentIndex == 1) {
-              Navigator.pushNamed(context, RoutesName.Categories);
-            } else if (_currentIndex == 2) {
-              Navigator.pushNamed(context, RoutesName.Home);
-            }
-          });
-        },
-        items: [
-          //home
-          SalomonBottomBarItem(
-            selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
-                .selectedIconTheme?.color,
-            icon: const Icon(
-              Icons.newspaper_rounded,
-              size: 35,
-            ),
-            title: Text(
-              'Home',
-              style: LightTheme
-                  .lightThemeData.bottomNavigationBarTheme.selectedLabelStyle,
-            ),
-          ),
-          //topics
-          SalomonBottomBarItem(
-            selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
-                .selectedIconTheme?.color,
-            icon: const Icon(
-              Icons.view_list_rounded,
-              size: 35,
-            ),
-            title: Text(
-              'Topics',
-              style: LightTheme
-                  .lightThemeData.bottomNavigationBarTheme.selectedLabelStyle,
-            ),
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomNavbar(),
       body: SafeArea(
         child: FutureBuilder<NewsChannelHeadlinesModel>(
           future: newsViewModel.fetchNewsChannelHeadlinesApi(channelName),
@@ -227,44 +117,53 @@ class _HomeState extends State<Home> {
                           },
                           //main container for holding all content
                           child: Container(
-                            // height: MediaQuery.of(context).size.height * .80,
-                            // width: MediaQuery.of(context).size.width * .,
                             decoration: BoxDecoration(
-                              //container border color
+                              // Container border color
                               border: Border.all(
-                                  color: themeProvider.isDarkTheme
-                                      ? DarkTheme.darkContainerBorderColor
-                                      : LightTheme.lightContainerBorderColor,
-                                  width: 2.0),
+                                color: themeProvider.isDarkTheme
+                                    ? DarkTheme.darkContainerBorderColor
+                                    : LightTheme.lightContainerBorderColor,
+                                width: 1.0,
+                              ),
                               borderRadius: BorderRadius.circular(15),
-                              //container color
-                              color: themeProvider.isDarkTheme
-                                  ? DarkTheme.darkContainerColor
-                                  : LightTheme.lightContainerColor,
+                              // Gradient color based on theme
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: themeProvider.isDarkTheme
+                                    ? [
+                                        const Color.fromARGB(255, 3, 32, 83),
+                                        Colors.black,
+                                      ]
+                                    : [
+                                        const Color.fromARGB(255, 3, 32, 83),
+                                        Colors.white,
+                                      ],
+                              ),
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               // mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  //image holder and decorator
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: CachedNetworkImage(
-                                      imageUrl: snapshot
-                                          .data!.articles![index].urlToImage
-                                          .toString(),
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) =>
-                                          const SpinKitDancingSquare(
-                                        color: Colors.amber,
-                                      ),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(
-                                        Icons.api,
-                                        color: Colors.red,
-                                      ),
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.zero,
+                                      bottomRight: Radius.zero,
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8)),
+                                  child: CachedNetworkImage(
+                                    imageUrl: snapshot
+                                        .data!.articles![index].urlToImage
+                                        .toString(),
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) =>
+                                        const SpinKitDancingSquare(
+                                      color: Colors.amber,
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(
+                                      Icons.api,
+                                      color: Colors.red,
                                     ),
                                   ),
                                 ),
@@ -276,7 +175,7 @@ class _HomeState extends State<Home> {
                                     maxLines: 3,
                                     snapshot.data!.articles![index].title
                                         .toString(),
-                                    style: GoogleFonts.josefinSans(
+                                    style: GoogleFonts.actor(
                                       textStyle: TextStyle(
                                           letterSpacing: 2,
                                           color: themeProvider.isDarkTheme
@@ -300,7 +199,7 @@ class _HomeState extends State<Home> {
                                             vertical: 0, horizontal: 20),
                                         child: Text(
                                           'Published at:',
-                                          style: GoogleFonts.josefinSans(
+                                          style: GoogleFonts.actor(
                                             textStyle: TextStyle(
                                                 letterSpacing: 0,
                                                 color: themeProvider.isDarkTheme
@@ -317,7 +216,7 @@ class _HomeState extends State<Home> {
                                             vertical: 0, horizontal: 0),
                                         child: Text(
                                           Format.format(dateTime),
-                                          style: GoogleFonts.josefinSans(
+                                          style: GoogleFonts.actor(
                                             textStyle: TextStyle(
                                                 letterSpacing: 0,
                                                 color: themeProvider.isDarkTheme
@@ -341,7 +240,7 @@ class _HomeState extends State<Home> {
                                   child: Text(
                                     snapshot.data!.articles![index].author
                                         .toString(),
-                                    style: GoogleFonts.josefinSans(
+                                    style: GoogleFonts.actor(
                                       textStyle: TextStyle(
                                         color: themeProvider.isDarkTheme
                                             ? DarkTheme.darkFontColor

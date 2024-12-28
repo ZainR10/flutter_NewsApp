@@ -8,11 +8,11 @@ import 'package:flutter_news/model/news_categories_model.dart';
 import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:flutter_news/view_model/routes.dart';
 import 'package:flutter_news/view_model/routes_name.dart';
+import 'package:flutter_news/widgets/bottom_navbar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Categories extends StatefulWidget {
   const Categories({super.key});
@@ -22,7 +22,6 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  int _currentIndex = 1;
   NewsViewModel newsViewModel = NewsViewModel();
 
   final Format = DateFormat('yMMMMd');
@@ -56,56 +55,10 @@ class _CategoriesState extends State<Categories> {
           : LightTheme.lightThemeData.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Center(child: Text("New's Categories")),
-        leading: BackButton(
-          onPressed: () {
-            Navigator.pushNamed(context, 'home_screen');
-          },
-          // color: Colors.white,
-        ),
+        automaticallyImplyLeading: false,
         // backgroundColor: Colors.blue[900],
       ),
-      bottomNavigationBar: SalomonBottomBar(
-        backgroundColor: themeProvider.isDarkTheme
-            ? DarkTheme.darkThemeData.bottomNavigationBarTheme.backgroundColor
-            : LightTheme
-                .lightThemeData.bottomNavigationBarTheme.backgroundColor,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-            if (_currentIndex == 0) {
-              Navigator.pushNamed(context, RoutesName.Home);
-            } else if (_currentIndex == 2) {
-              Navigator.pushNamed(context, RoutesName.Home);
-            }
-          });
-        },
-        items: [
-          //home
-          SalomonBottomBarItem(
-            selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
-                .selectedIconTheme?.color,
-            icon: const Icon(
-              Icons.newspaper_rounded,
-              size: 35,
-            ),
-            title: Text('Home',
-                style: LightTheme.lightThemeData.bottomNavigationBarTheme
-                    .selectedLabelStyle),
-          ),
-          //topics
-          SalomonBottomBarItem(
-              selectedColor: LightTheme.lightThemeData.bottomNavigationBarTheme
-                  .selectedIconTheme?.color,
-              icon: const Icon(
-                Icons.view_list_rounded,
-                size: 35,
-              ),
-              title: Text('Topics',
-                  style: LightTheme.lightThemeData.bottomNavigationBarTheme
-                      .selectedLabelStyle)),
-        ],
-      ),
+      bottomNavigationBar: BottomNavbar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

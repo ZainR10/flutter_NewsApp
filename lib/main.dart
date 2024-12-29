@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/View/themeprovider.dart';
+import 'package:flutter_news/view_model/news_channel_provider.dart';
+import 'package:flutter_news/view_model/themeprovider.dart';
 import 'package:flutter_news/view_model/bottom_navbar_provider.dart';
-import 'package:flutter_news/view_model/routes.dart';
-import 'package:flutter_news/view_model/routes_name.dart';
+import 'package:flutter_news/utils/routes.dart';
+import 'package:flutter_news/utils/routes_name.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,7 +16,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +24,12 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
           ChangeNotifierProvider(create: (_) => BottomNavbarState()),
+          ChangeNotifierProvider(create: (_) => ChannelProvider()),
         ],
         child: const MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-          initialRoute: RoutesName.SplashScreen,
+          initialRoute: RoutesName.splashScreen,
           onGenerateRoute: Routes.generateRoute,
         ));
   }

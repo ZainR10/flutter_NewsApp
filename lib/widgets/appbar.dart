@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/View/theme.dart';
-import 'package:flutter_news/View/themeprovider.dart';
-import 'package:flutter_news/view_model/news_view_model.dart';
+import 'package:flutter_news/utils/theme.dart';
+import 'package:flutter_news/view_model/news_channel_provider.dart';
+import 'package:flutter_news/view_model/themeprovider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -9,100 +9,99 @@ class ReuseableAppbar extends StatefulWidget {
   const ReuseableAppbar({super.key});
 
   @override
-  State<ReuseableAppbar> createState() => __ReuseableAppbarState();
+  State<ReuseableAppbar> createState() => _ReuseableAppbarState();
 }
 
-//news channels name stored as enum because these are constant values
 enum NewsFilterList {
   aryNews,
   alJazeera,
   bbcNews,
 }
 
-@override
-class __ReuseableAppbarState extends State<ReuseableAppbar> {
-  NewsViewModel newsViewModel = NewsViewModel();
-//default channel variable
+class _ReuseableAppbarState extends State<ReuseableAppbar> {
   NewsFilterList? selectedMenu;
-//default channel and parameter for filtering and fetching desired channel from api
-//it is also used in api as a parameter and in news_repository,future builder and in news view_model
   String channelName = 'bbc-news';
-  final Format = DateFormat('yMMMMd');
+  final dateFormat = DateFormat('yMMMMd');
+
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final channelProvider =
+        Provider.of<ChannelProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: themeProvider.isDarkTheme
+            ? DarkTheme.darkThemeData.appBarTheme.backgroundColor
+            : LightTheme.lightThemeData.appBarTheme.backgroundColor,
         automaticallyImplyLeading: false,
-        title: const Text(
+        title: Text(
           "Breaking New's",
+          style: TextStyle(
+              color: themeProvider.isDarkTheme
+                  ? DarkTheme.darkThemeData.appBarTheme.titleTextStyle?.color
+                  : LightTheme.lightThemeData.appBarTheme.titleTextStyle?.color,
+              fontSize: themeProvider.isDarkTheme
+                  ? DarkTheme.darkThemeData.appBarTheme.titleTextStyle?.fontSize
+                  : LightTheme
+                      .lightThemeData.appBarTheme.titleTextStyle?.fontSize),
         ),
         actions: [
-          Consumer<ThemeProvider>(
-            builder: (context, themeProvider, child) {
-              return IconButton(
-                onPressed: () {
-                  themeProvider.toggleTheme();
-                },
-                icon: Icon(
-                  themeProvider.isDarkTheme
-                      ? Icons.nightlight_round_sharp
-                      : Icons.wb_sunny_sharp,
-                ),
-              );
-            },
+          IconButton(
+            onPressed: themeProvider.toggleTheme,
+            icon: Icon(
+              size: 35,
+              color: themeProvider.isDarkTheme
+                  ? DarkTheme.darkThemeData.appBarTheme.iconTheme?.color
+                  : LightTheme.lightThemeData.appBarTheme.iconTheme?.color,
+              themeProvider.isDarkTheme
+                  ? Icons.nightlight_round_sharp
+                  : Icons.wb_sunny_sharp,
+            ),
           ),
           PopupMenuButton<NewsFilterList>(
-              // offset: Offset(0.0, appBarHeight),
-              onSelected: (NewsFilterList item) {
-                if (NewsFilterList.alJazeera.name == item.name) {
-                  channelName = 'al-jazeera-english';
-                }
-                if (NewsFilterList.aryNews.name == item.name) {
-                  channelName = 'ary-news';
-                }
-                if (NewsFilterList.bbcNews.name == item.name) {
-                  channelName = 'bbc-news';
-                }
-                //changes news channel  on selection
-                setState(() {
-                  selectedMenu = item;
-                });
-              },
-              initialValue: selectedMenu,
-              icon: const Icon(Icons.more_vert_rounded),
-              itemBuilder: (BuildContext context) =>
-                  <PopupMenuEntry<NewsFilterList>>[
-                    PopupMenuItem<NewsFilterList>(
-                      value: NewsFilterList.alJazeera,
-                      child: Text(
-                        'Al Jazeera',
-                        style: themeProvider.isDarkTheme
-                            ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
-                            : LightTheme
-                                .lightThemeData.popupMenuTheme.textStyle,
-                      ),
-                    ),
-                    PopupMenuItem<NewsFilterList>(
-                      value: NewsFilterList.bbcNews,
-                      child: Text('BBC News',
-                          style: themeProvider.isDarkTheme
-                              ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
-                              : LightTheme
-                                  .lightThemeData.popupMenuTheme.textStyle),
-                    ),
-                    PopupMenuItem<NewsFilterList>(
-                      value: NewsFilterList.aryNews,
-                      child: Text('Ary News',
-                          style: themeProvider.isDarkTheme
-                              ? DarkTheme.darkThemeData.popupMenuTheme.textStyle
-                              : LightTheme
-                                  .lightThemeData.popupMenuTheme.textStyle),
-                    )
-                  ]),
+            iconSize: 35,
+            position: PopupMenuPosition.under,
+            iconColor: themeProvider.isDarkTheme
+                ? DarkTheme.darkThemeData.popupMenuTheme.iconColor
+                : LightTheme.lightThemeData.popupMenuTheme.iconColor,
+            onSelected: (item) {
+              channelProvider.updateChannel(_getChannelName(item));
+            },
+            initialValue: selectedMenu,
+            icon: const Icon(Icons.more_vert_rounded),
+            itemBuilder: (context) => <PopupMenuEntry<NewsFilterList>>[
+              PopupMenuItem(
+                value: NewsFilterList.alJazeera,
+                child: Text('Al Jazeera',
+                    style: Theme.of(context).textTheme.bodyMedium),
+              ),
+              PopupMenuItem(
+                value: NewsFilterList.bbcNews,
+                child: Text('BBC News',
+                    style: Theme.of(context).textTheme.bodyMedium),
+              ),
+              PopupMenuItem(
+                value: NewsFilterList.aryNews,
+                child: Text('Ary News',
+                    style: Theme.of(context).textTheme.bodyMedium),
+              ),
+            ],
+          ),
         ],
       ),
     );
+  }
+
+  String _getChannelName(NewsFilterList item) {
+    switch (item) {
+      case NewsFilterList.alJazeera:
+        return 'al-jazeera-english';
+      case NewsFilterList.aryNews:
+        return 'ary-news';
+      case NewsFilterList.bbcNews:
+      default:
+        return 'bbc-news';
+    }
   }
 }

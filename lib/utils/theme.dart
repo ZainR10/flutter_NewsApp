@@ -9,6 +9,7 @@ class LightTheme {
 
   static final ThemeData lightThemeData = ThemeData(
       popupMenuTheme: PopupMenuThemeData(
+          iconSize: 50,
           color: Colors.grey.shade400,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -34,9 +35,10 @@ class LightTheme {
           thickness: 2,
           space: 10),
       //appbar
+      brightness: Brightness.light,
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
-          iconTheme: const IconThemeData(color: Colors.black, size: 35),
+          iconTheme: const IconThemeData(color: Colors.black, size: 50),
           titleTextStyle: GoogleFonts.josefinSans(
             textStyle: const TextStyle(letterSpacing: 3, color: Colors.black),
             fontSize: 25,
@@ -60,10 +62,12 @@ class LightTheme {
 class DarkTheme {
   static Color darkFontColor = Colors.white;
   static Color darkContainerColor = Colors.black54;
-  static const Color darkContainerBorderColor = Colors.grey;
+  static const Color darkContainerBorderColor = Colors.white;
 
   static final ThemeData darkThemeData = ThemeData(
       popupMenuTheme: PopupMenuThemeData(
+          iconSize: 50,
+          iconColor: Colors.white,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(8.0),
@@ -78,7 +82,7 @@ class DarkTheme {
               fontSize: 15,
               fontWeight: FontWeight.w900)),
       //background color
-      scaffoldBackgroundColor: const Color.fromARGB(255, 3, 32, 83),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 47, 65, 97),
 //divider
       dividerColor: Colors.white,
       dividerTheme: const DividerThemeData(
@@ -88,23 +92,24 @@ class DarkTheme {
         thickness: 2,
       ),
       //appbar
+
       appBarTheme: AppBarTheme(
           // backgroundColor: Colors.blue[900],
-          backgroundColor: const Color.fromARGB(255, 3, 32, 83),
-          iconTheme: const IconThemeData(color: Colors.white, size: 35),
-          titleTextStyle: GoogleFonts.josefinSans(
+          backgroundColor: const Color.fromARGB(255, 47, 65, 97),
+          iconTheme: const IconThemeData(color: Colors.white, size: 50),
+          titleTextStyle: GoogleFonts.actor(
             textStyle: const TextStyle(letterSpacing: 3, color: Colors.white),
-            fontSize: 25,
+            fontSize: 30,
             fontWeight: FontWeight.w900,
           )),
       //bottombar
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedLabelStyle: GoogleFonts.josefinSans(
+        selectedLabelStyle: GoogleFonts.actor(
           textStyle: const TextStyle(letterSpacing: 3, color: Colors.white),
           fontSize: 20,
           fontWeight: FontWeight.w900,
         ),
-        backgroundColor: const Color.fromARGB(255, 3, 32, 83),
+        backgroundColor: const Color.fromARGB(255, 47, 65, 97),
         selectedItemColor: Colors.white,
         selectedIconTheme: const IconThemeData(color: Colors.white),
       ),

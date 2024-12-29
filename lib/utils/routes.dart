@@ -3,22 +3,22 @@ import 'package:flutter_news/View/categories.dart';
 import 'package:flutter_news/View/home_screen.dart';
 import 'package:flutter_news/View/news_detail_screen.dart';
 import 'package:flutter_news/View/splash_screen.dart';
-import 'package:flutter_news/view_model/routes_name.dart';
+import 'package:flutter_news/utils/routes_name.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case RoutesName.SplashScreen:
+      case RoutesName.splashScreen:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
       // case RoutesName.SearchNews:
       //   return MaterialPageRoute(builder: (context) => const SearchNews());
-      case RoutesName.Home:
+      case RoutesName.home:
         return MaterialPageRoute(builder: (context) => const Home());
 
-      case RoutesName.Categories:
+      case RoutesName.categories:
         return MaterialPageRoute(builder: (context) => const Categories());
 
-      case RoutesName.NewsDetail:
+      case RoutesName.newsDetail:
         // Retrieve arguments passed to NewsDetail screen
         final args = settings.arguments;
         if (args is NewsDetailArguments) {

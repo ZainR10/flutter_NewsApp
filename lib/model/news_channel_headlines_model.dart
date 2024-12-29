@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new, prefer_collection_literals, unnecessary_this
+
 class NewsChannelHeadlinesModel {
   String? status;
   int? totalResults;

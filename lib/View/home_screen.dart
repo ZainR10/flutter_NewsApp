@@ -11,8 +11,9 @@ import 'package:flutter_news/utils/routes.dart';
 import 'package:flutter_news/utils/routes_name.dart';
 import 'package:flutter_news/widgets/appbar.dart';
 import 'package:flutter_news/widgets/bottom_navbar.dart';
+import 'package:flutter_news/widgets/text_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -164,24 +165,18 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 20),
-                                    //******title*****
-                                    child: Text(
-                                      maxLines: 3,
-                                      snapshot.data!.articles![index].title
-                                          .toString(),
-                                      style: GoogleFonts.actor(
-                                        textStyle: TextStyle(
-                                            letterSpacing: 2,
-                                            color: themeProvider.isDarkTheme
-                                                ? DarkTheme.darkFontColor
-                                                : LightTheme.lightFontColor),
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 20),
+                                      //******title*****
+                                      child: CustomText(
+                                        text: snapshot
+                                            .data!.articles![index].title
+                                            .toString(),
+                                        textMaxLines: 3,
+                                        textLetterSpace: 2,
+                                        textSize: 30,
+                                        textWeight: FontWeight.bold,
+                                      )),
                                   const SizedBox(height: 10),
                                   //****date******
                                   Padding(
@@ -190,40 +185,23 @@ class _HomeState extends State<Home> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 0, horizontal: 20),
-                                          child: Text(
-                                            'Published at:',
-                                            style: GoogleFonts.actor(
-                                              textStyle: TextStyle(
-                                                  letterSpacing: 0,
-                                                  color: themeProvider
-                                                          .isDarkTheme
-                                                      ? DarkTheme.darkFontColor
-                                                      : LightTheme
-                                                          .lightFontColor),
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
+                                        const Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 0, horizontal: 20),
+                                            child: CustomText(
+                                              text: 'Published at:',
+                                              textLetterSpace: 0,
+                                              textSize: 18,
+                                              textWeight: FontWeight.bold,
+                                            )),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 0, horizontal: 0),
-                                          child: Text(
-                                            Format.format(dateTime),
-                                            style: GoogleFonts.actor(
-                                              textStyle: TextStyle(
-                                                  letterSpacing: 0,
-                                                  color: themeProvider
-                                                          .isDarkTheme
-                                                      ? DarkTheme.darkFontColor
-                                                      : LightTheme
-                                                          .lightFontColor),
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                          child: CustomText(
+                                            text: Format.format(dateTime),
+                                            textLetterSpace: 0,
+                                            textSize: 18,
+                                            textWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ],
@@ -235,19 +213,13 @@ class _HomeState extends State<Home> {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 0, horizontal: 20),
-                                    child: Text(
-                                      snapshot.data!.articles![index].author
+                                    child: CustomText(
+                                      text: snapshot
+                                          .data!.articles![index].author
                                           .toString(),
-                                      style: GoogleFonts.actor(
-                                        textStyle: TextStyle(
-                                          color: themeProvider.isDarkTheme
-                                              ? DarkTheme.darkFontColor
-                                              : LightTheme.lightFontColor,
-                                          letterSpacing: 0,
-                                        ),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      textLetterSpace: 0,
+                                      textSize: 20,
+                                      textWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ],

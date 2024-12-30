@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/component/navigation_button.dart';
 import 'package:flutter_news/utils/theme.dart';
 import 'package:flutter_news/view_model/themeprovider.dart';
+import 'package:flutter_news/widgets/text_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -73,17 +74,10 @@ class _NewsDetailState extends State<NewsDetail> {
                   padding: const EdgeInsets.all(10),
                   children: [
                     //title
-                    Text(
-                      widget.newsTitle,
-                      style: GoogleFonts.actor(
-                        textStyle: TextStyle(
-                            letterSpacing: 0,
-                            color: themeProvider.isDarkTheme
-                                ? DarkTheme.darkFontColor
-                                : LightTheme.lightFontColor),
-                        fontSize: 30,
-                        fontWeight: FontWeight.w900,
-                      ),
+                    CustomText(
+                      text: widget.newsTitle,
+                      textSize: 30,
+                      textWeight: FontWeight.w900,
                     ),
 
                     ClipRRect(
@@ -106,66 +100,50 @@ class _NewsDetailState extends State<NewsDetail> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        //news source
-                        Text(
-                          widget.source,
-                          style: GoogleFonts.actor(
-                            textStyle: TextStyle(
-                              color: themeProvider.isDarkTheme
-                                  ? DarkTheme.darkFontColor
-                                  : LightTheme.lightFontColor,
-                              letterSpacing: 1,
-                            ),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w900,
-                          ),
+                        const Icon(
+                          Icons.pause_circle_outline,
+                          size: 45,
+                          color: Colors.white,
                         ),
+
+                        //news source
+                        CustomText(
+                          text: widget.source,
+                          textSize: 16,
+                          textWeight: FontWeight.w900,
+                          textLetterSpace: 1,
+                        ),
+
                         //date
-                        Text(
-                          widget.newsDate,
-                          style: GoogleFonts.actor(
-                            textStyle: TextStyle(
-                                letterSpacing: 1,
-                                color: themeProvider.isDarkTheme
-                                    ? DarkTheme.darkFontColor
-                                    : LightTheme.lightFontColor),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w900,
-                          ),
+                        CustomText(
+                          text: widget.newsDate,
+                          textSize: 16,
+                          textWeight: FontWeight.w900,
+                          textLetterSpace: 1,
                         ),
                       ],
                     ),
+                    const Divider(),
                     SizedBox(
-                      height: height * .02,
+                      height: height * .01,
                     ),
-                    Text(
-                      widget.content,
-                      style: GoogleFonts.actor(
-                        textStyle: TextStyle(
-                            letterSpacing: 1,
-                            color: themeProvider.isDarkTheme
-                                ? DarkTheme.darkFontColor
-                                : LightTheme.lightFontColor),
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
-                      ),
+                    CustomText(
+                      text: widget.content,
+                      textSize: 25,
+                      textWeight: FontWeight.w900,
+                      textLetterSpace: 1,
                     ),
+
                     SizedBox(
                       height: height * .02,
                     ),
                     //description
 
-                    Text(
-                      widget.description,
-                      style: GoogleFonts.actor(
-                        textStyle: TextStyle(
-                            letterSpacing: 1,
-                            color: themeProvider.isDarkTheme
-                                ? DarkTheme.darkFontColor
-                                : LightTheme.lightFontColor),
-                        fontSize: 25,
-                        fontWeight: FontWeight.w900,
-                      ),
+                    CustomText(
+                      text: widget.description,
+                      textSize: 25,
+                      textWeight: FontWeight.w900,
+                      textLetterSpace: 1,
                     ),
                   ],
                 ),

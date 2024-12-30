@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_news/widgets/text_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -40,17 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
             ],
           ),
         ),
-        child: Center(
-          child: Text(
-            'News Nest',
-            style: GoogleFonts.actor(
-              textStyle: const TextStyle(
-                letterSpacing: 2,
-                color: Colors.white,
-              ),
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-            ),
+        child: const Center(
+          child: CustomText(
+            text: 'News Nest',
+            textLetterSpace: 2,
+            textSize: 50,
+            textWeight: FontWeight.bold,
+            textColor: Colors.white,
           ),
         ),
       ),

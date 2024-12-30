@@ -9,8 +9,9 @@ import 'package:flutter_news/view_model/news_view_model.dart';
 import 'package:flutter_news/utils/routes.dart';
 import 'package:flutter_news/utils/routes_name.dart';
 import 'package:flutter_news/widgets/bottom_navbar.dart';
+import 'package:flutter_news/widgets/text_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -78,29 +79,36 @@ class _CategoriesState extends State<Categories> {
                             width: width * 0.3,
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                  width: 2,
-                                  color: categoryName == categoriesList[index]
-                                      ? Colors.black
-                                      : Colors.grey.shade500,
+                                    width: 3,
+                                    color: categoryName == categoriesList[index]
+                                        ? Colors.black
+                                        : Colors.transparent
+                                    // : Colors.grey.shade500,
+                                    ),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: themeProvider.isDarkTheme
+                                      ? [
+                                          const Color.fromARGB(255, 39, 38, 38),
+                                          const Color.fromARGB(255, 47, 65, 97),
+                                        ]
+                                      : [
+                                          const Color.fromARGB(255, 47, 65, 97),
+                                          Colors.white,
+                                        ],
                                 ),
-                                color: categoryName == categoriesList[index]
-                                    ? Colors.lightBlue.shade200
-                                    : Colors.grey.shade300,
                                 borderRadius: BorderRadius.circular(50)),
                             child: Center(
                               child: Padding(
-                                padding: const EdgeInsets.all(8),
-                                child: Text(
-                                  categoriesList[index].toString(),
-                                  style: GoogleFonts.actor(
-                                    textStyle: const TextStyle(
-                                      letterSpacing: 1,
-                                    ),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ),
+                                  padding: const EdgeInsets.all(8),
+                                  child: CustomText(
+                                    text: categoriesList[index].toString(),
+                                    textLetterSpace: 1,
+                                    textSize: 20,
+                                    textColor: Colors.black,
+                                    textWeight: FontWeight.bold,
+                                  )),
                             ),
                           ),
                         ),
@@ -213,59 +221,40 @@ class _CategoriesState extends State<Categories> {
                                         padding: const EdgeInsets.all(8),
                                         child: Column(children: [
                                           //*****title******
-                                          Text(
-                                            maxLines: 3,
-                                            snapshot
+                                          CustomText(
+                                            text: snapshot
                                                 .data!.articles![index].title
                                                 .toString(),
-                                            style: GoogleFonts.actor(
-                                              textStyle: TextStyle(
-                                                overflow: TextOverflow.fade,
-                                                color: themeProvider.isDarkTheme
-                                                    ? DarkTheme.darkFontColor
-                                                    : LightTheme.lightFontColor,
-                                              ),
-                                              fontSize: 20,
-                                            ),
+                                            textMaxLines: 3,
+                                            textSize: 20,
+                                            textOverflow: TextOverflow.fade,
                                           ),
+
                                           const Spacer(),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               //*****source name******
-                                              Text(
-                                                overflow: TextOverflow.fade,
-                                                snapshot.data!.articles![index]
-                                                    .source!.name
+                                              CustomText(
+                                                text: snapshot
+                                                    .data!
+                                                    .articles![index]
+                                                    .source!
+                                                    .name
                                                     .toString(),
-                                                style: GoogleFonts.actor(
-                                                  textStyle: TextStyle(
-                                                      color: themeProvider
-                                                              .isDarkTheme
-                                                          ? DarkTheme
-                                                              .darkFontColor
-                                                          : LightTheme
-                                                              .lightFontColor),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w900,
-                                                ),
+                                                textLetterSpace: 3,
+                                                textSize: 14,
+                                                textOverflow: TextOverflow.fade,
+                                                textWeight: FontWeight.w900,
                                               ),
+
                                               //*****date******
-                                              Text(
-                                                Format.format(dateTime),
-                                                style: GoogleFonts.actor(
-                                                  textStyle: TextStyle(
-                                                      overflow:
-                                                          TextOverflow.fade,
-                                                      color: themeProvider
-                                                              .isDarkTheme
-                                                          ? DarkTheme
-                                                              .darkFontColor
-                                                          : LightTheme
-                                                              .lightFontColor),
-                                                  fontSize: 14,
-                                                ),
+
+                                              CustomText(
+                                                text: Format.format(dateTime),
+                                                textSize: 14,
+                                                textOverflow: TextOverflow.fade,
                                               ),
                                             ],
                                           )

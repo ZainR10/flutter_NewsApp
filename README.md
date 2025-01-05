@@ -11,7 +11,9 @@ This app includes features like:
 ### Screenshots:
 
 #### Light Theme:
+splash screen.
 <img src="https://github.com/user-attachments/assets/88fd0eb1-4d4b-49df-ba44-0c295bbb7ba7" alt="splash screen" width="200">,
+home screen light
 <img src="https://github.com/user-attachments/assets/446fb901-c270-4ffa-b96b-3972903b8e4c" alt="home-light" width="200">,
 <img src="https://github.com/user-attachments/assets/6b68a6da-b947-48c0-ae71-22aa1d6b8c8b" alt="categories-light" width="200">,
 <img src="https://github.com/user-attachments/assets/c21d26b7-6a34-4f2d-8567-99a6d8c048ca" alt="news-details-light" width="200">,

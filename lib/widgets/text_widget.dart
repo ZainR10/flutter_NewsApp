@@ -25,21 +25,21 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-
-    return Text(
-      text,
-      maxLines: textMaxLines,
-      style: GoogleFonts.actor(
-        textStyle: TextStyle(
-            overflow: textOverflow,
-            letterSpacing: textLetterSpace,
-            color: themeProvider.isDarkTheme
-                ? DarkTheme.darkFontColor
-                : LightTheme.lightFontColor),
-        fontSize: textSize,
-        fontWeight: textWeight,
-      ),
-    );
+    return Consumer<ThemeProvider>(builder: (context, value, child) {
+      return Text(
+        text,
+        maxLines: textMaxLines,
+        style: GoogleFonts.actor(
+          textStyle: TextStyle(
+              overflow: textOverflow,
+              letterSpacing: textLetterSpace,
+              color: value.isDarkTheme
+                  ? DarkTheme.darkFontColor
+                  : LightTheme.lightFontColor),
+          fontSize: textSize,
+          fontWeight: textWeight,
+        ),
+      );
+    });
   }
 }

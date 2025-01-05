@@ -19,7 +19,7 @@ class LightTheme {
               topRight: Radius.circular(8.0),
             ),
           ),
-          textStyle: GoogleFonts.josefinSans(
+          textStyle: GoogleFonts.actor(
               textStyle: const TextStyle(letterSpacing: 1, color: Colors.black),
               fontSize: 15,
               fontWeight: FontWeight.w900)),
@@ -39,14 +39,14 @@ class LightTheme {
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Colors.black, size: 50),
-          titleTextStyle: GoogleFonts.josefinSans(
+          titleTextStyle: GoogleFonts.actor(
             textStyle: const TextStyle(letterSpacing: 3, color: Colors.black),
-            fontSize: 25,
+            fontSize: 30,
             fontWeight: FontWeight.w900,
           )),
       //bottombar
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedLabelStyle: GoogleFonts.josefinSans(
+        selectedLabelStyle: GoogleFonts.actor(
           textStyle: const TextStyle(letterSpacing: 3, color: Colors.black),
           fontSize: 20,
           fontWeight: FontWeight.w900,
@@ -55,7 +55,7 @@ class LightTheme {
         selectedItemColor: Colors.black,
         selectedIconTheme: const IconThemeData(color: Colors.black),
       ),
-      fontFamily: 'josefin Sans');
+      fontFamily: 'Actor');
 }
 
 //darktheme
@@ -77,7 +77,7 @@ class DarkTheme {
             ),
           ),
           color: Colors.black54,
-          textStyle: GoogleFonts.josefinSans(
+          textStyle: GoogleFonts.actor(
               textStyle: const TextStyle(letterSpacing: 1, color: Colors.white),
               fontSize: 15,
               fontWeight: FontWeight.w900)),
@@ -113,5 +113,5 @@ class DarkTheme {
         selectedItemColor: Colors.white,
         selectedIconTheme: const IconThemeData(color: Colors.white),
       ),
-      fontFamily: 'josefin Sans');
+      fontFamily: 'Actor');
 }

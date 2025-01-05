@@ -13,6 +13,7 @@ class ThemeProvider with ChangeNotifier {
     _isDarkTheme = !_isDarkTheme;
     _themeData =
         _isDarkTheme ? DarkTheme.darkThemeData : LightTheme.lightThemeData;
+    print("Theme toggled. New theme is ${_isDarkTheme ? 'Dark' : 'Light'}");
     notifyListeners();
   }
 }

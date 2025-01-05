@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/utils/theme.dart';
 import 'package:flutter_news/view_model/news_channel_provider.dart';
 import 'package:flutter_news/view_model/themeprovider.dart';
+import 'package:flutter_news/widgets/text_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,9 @@ enum NewsFilterList {
   bbcNews,
 }
 
+@override
+Size get preferredSize => const Size.fromHeight(56.0); // Set the desired height
+
 class _ReuseableAppbarState extends State<ReuseableAppbar> {
   NewsFilterList? selectedMenu;
   String channelName = 'bbc-news';
@@ -25,36 +29,29 @@ class _ReuseableAppbarState extends State<ReuseableAppbar> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     final channelProvider =
         Provider.of<ChannelProvider>(context, listen: false);
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: themeProvider.isDarkTheme
+    return Consumer<ThemeProvider>(builder: (context, value, child) {
+      return AppBar(
+        backgroundColor: value.isDarkTheme
             ? DarkTheme.darkThemeData.appBarTheme.backgroundColor
             : LightTheme.lightThemeData.appBarTheme.backgroundColor,
         automaticallyImplyLeading: false,
-        title: Text(
-          "Breaking New's",
-          style: TextStyle(
-              color: themeProvider.isDarkTheme
-                  ? DarkTheme.darkThemeData.appBarTheme.titleTextStyle?.color
-                  : LightTheme.lightThemeData.appBarTheme.titleTextStyle?.color,
-              fontSize: themeProvider.isDarkTheme
-                  ? DarkTheme.darkThemeData.appBarTheme.titleTextStyle?.fontSize
-                  : LightTheme
-                      .lightThemeData.appBarTheme.titleTextStyle?.fontSize),
+        title: const CustomText(
+          text: "Breaking New's",
+          textSize: 28,
+          textWeight: FontWeight.bold,
         ),
         actions: [
           IconButton(
-            onPressed: themeProvider.toggleTheme,
+            onPressed: value.toggleTheme,
             icon: Icon(
               size: 35,
-              color: themeProvider.isDarkTheme
+              color: value.isDarkTheme
                   ? DarkTheme.darkThemeData.appBarTheme.iconTheme?.color
                   : LightTheme.lightThemeData.appBarTheme.iconTheme?.color,
-              themeProvider.isDarkTheme
+              value.isDarkTheme
                   ? Icons.nightlight_round_sharp
                   : Icons.wb_sunny_sharp,
             ),
@@ -62,7 +59,7 @@ class _ReuseableAppbarState extends State<ReuseableAppbar> {
           PopupMenuButton<NewsFilterList>(
             iconSize: 35,
             position: PopupMenuPosition.under,
-            iconColor: themeProvider.isDarkTheme
+            iconColor: value.isDarkTheme
                 ? DarkTheme.darkThemeData.popupMenuTheme.iconColor
                 : LightTheme.lightThemeData.popupMenuTheme.iconColor,
             onSelected: (item) {
@@ -89,8 +86,8 @@ class _ReuseableAppbarState extends State<ReuseableAppbar> {
             ],
           ),
         ],
-      ),
-    );
+      );
+    });
   }
 
   String _getChannelName(NewsFilterList item) {

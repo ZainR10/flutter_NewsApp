@@ -13,7 +13,7 @@ class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomNavbarState =
-        Provider.of<BottomNavbarState>(context, listen: false);
+        Provider.of<BottomNavbarState>(context, listen: true);
 
     return Consumer<ThemeProvider>(builder: (context, value, child) {
       return SalomonBottomBar(
@@ -30,16 +30,7 @@ class BottomNavbar extends StatelessWidget {
             : LightTheme
                 .lightThemeData.bottomNavigationBarTheme.backgroundColor,
         currentIndex: bottomNavbarState.currentIndex,
-        onTap: (index) {
-          if (bottomNavbarState.currentIndex != index) {
-            bottomNavbarState.setIndex(index);
-            if (index == 0) {
-              Navigator.pushReplacementNamed(context, RoutesName.home);
-            } else if (index == 1) {
-              Navigator.pushReplacementNamed(context, RoutesName.categories);
-            }
-          }
-        },
+        onTap: (index) => bottomNavbarState.navigateToIndex(context, index),
         items: [
           // Home
           SalomonBottomBarItem(
@@ -49,7 +40,7 @@ class BottomNavbar extends StatelessWidget {
                 : LightTheme.lightThemeData.bottomNavigationBarTheme
                     .selectedIconTheme?.color,
             icon: const Icon(Icons.travel_explore, size: 35),
-            title: CustomText(
+            title: const CustomText(
               text: 'HOME',
               textWeight: FontWeight.bold,
               textSize: 18,

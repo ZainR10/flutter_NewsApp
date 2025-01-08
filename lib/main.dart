@@ -17,7 +17,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -26,9 +27,10 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => BottomNavbarState()),
           ChangeNotifierProvider(create: (_) => ChannelProvider()),
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
+          scaffoldMessengerKey: scaffoldMessengerKey,
           initialRoute: RoutesName.splashScreen,
           onGenerateRoute: Routes.generateRoute,
         ));

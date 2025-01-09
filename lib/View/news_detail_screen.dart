@@ -2,7 +2,6 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/component/back_press_handler.dart';
 import 'package:flutter_news/component/navigation_button.dart';
 import 'package:flutter_news/component/vertical_divider.dart';
 import 'package:flutter_news/utils/theme.dart';

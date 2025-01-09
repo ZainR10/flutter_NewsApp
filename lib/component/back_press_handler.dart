@@ -57,7 +57,7 @@ class BackPressHandler extends StatelessWidget {
               dismissDirection: DismissDirection.horizontal,
               animation: kAlwaysDismissedAnimation,
               content: Text('Press again to exit'),
-              duration: Duration(seconds: 10),
+              duration: Duration(seconds: 2),
             ),
           );
 

@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news/component/back_press_handler.dart';
 import 'package:flutter_news/component/custom_container.dart';
@@ -46,14 +47,18 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print("Home widget is rebuilding");
+    if (kDebugMode) {
+      print("Home widget is rebuilding");
+    }
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     final channelProvider = Provider.of<ChannelProvider>(context);
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
 
     return Consumer<ThemeProvider>(builder: (context, value, child) {
-      print("Consumer in Home widget is rebuilding");
+      if (kDebugMode) {
+        print("Consumer in Home widget is rebuilding");
+      }
       return BackPressHandler(
         shouldExitApp: true,
         scaffoldMessengerKey: MyApp.scaffoldMessengerKey,

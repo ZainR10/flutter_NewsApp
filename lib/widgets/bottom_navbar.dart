@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/utils/theme.dart';
 import 'package:flutter_news/view_model/themeprovider.dart';
 import 'package:flutter_news/view_model/bottom_navbar_provider.dart';
-import 'package:flutter_news/utils/routes_name.dart';
 import 'package:flutter_news/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';

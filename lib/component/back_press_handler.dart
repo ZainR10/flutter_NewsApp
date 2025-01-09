@@ -26,13 +26,13 @@ class BackPressHandler extends StatelessWidget {
 
     return PopScope(
       canPop: false, // Prevent automatic pop by Flutter
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, result) async {
         // Handle back navigation when not exiting the app
         if (!shouldExitApp) {
           if (onBackPressed != null) {
             onBackPressed!();
           } else {
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(result);
           }
 
           if (bottomNavbarState.currentIndex > 0) {

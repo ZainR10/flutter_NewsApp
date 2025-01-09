@@ -60,7 +60,7 @@ class _CategoriesState extends State<Categories> {
       return BackPressHandler(
         shouldExitApp: false,
         onBackPressed: () {
-          Navigator.pop(context);
+          Navigator.pushNamed(context, RoutesName.home);
         },
         child: Scaffold(
           backgroundColor: value.isDarkTheme

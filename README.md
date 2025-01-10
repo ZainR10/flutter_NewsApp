@@ -20,4 +20,5 @@ This app includes features like:
 
 ![home screen light]()
 ![splash screen2h](https://github.com/user-attachments/assets/c6fe7caf-beb3-4584-8c66-2742dc030f07)
+![splash screenklj](https://github.com/user-attachments/assets/126c1ae8-64a0-42d7-b76c-cb94ac74dfb0)
 

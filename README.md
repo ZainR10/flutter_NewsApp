@@ -11,7 +11,7 @@ This app includes features like:
 ### Screenshots:
 
 #### Light Theme:
-![splash screen](https://github.com/user-attachments/assets/29317945-dc10-4359-9f51-6a23800f5ee6)   ![Categories screen light](https://github.com/user-attachments/assets/0d24c1a7-64bd-423b-97a7-11b98c336f51) ![channels list light](https://github.com/user-attachments/assets/5b5abe22-f2da-438b-805a-59ced72088de) ![News details light](https://github.com/user-attachments/assets/e9072e04-1b48-44a0-82eb-0688958c3b48) ![home screen light](https://github.com/user-attachments/assets/a01b2eef-e4ad-4404-a951-9979281f94c1)
+![splash screen](https://github.com/user-attachments/assets/29317945-dc10-4359-9f51-6a23800f5ee6)   ![Categories screen light](https://github.com/user-attachments/assets/0d24c1a7-64bd-423b-97a7-11b98c336f51) ![channels list light](https://github.com/user-attachments/assets/5b5abe22-f2da-438b-805a-59ced72088de) ![News details light](https://github.com/user-attachments/assets/e9072e04-1b48-44a0-82eb-0688958c3b48) 
 
 
 #### Dark Theme: 

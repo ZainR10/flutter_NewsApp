@@ -11,9 +11,9 @@ This app includes features like:
 ### Screenshots:
 
 #### Light Theme:
+[Splash Screen]
 <a href="https://github.com/user-attachments/assets/2ff68fb7-2346-44b3-9f60-d039e10f03d2"> <img src="https://github.com/user-attachments/assets/2ff68fb7-2346-44b3-9f60-d039e10f03d2" alt="Light Theme" width="300" height="560"> </a>
 
-![Splash Screen]
 
 #### Dark Theme:
 

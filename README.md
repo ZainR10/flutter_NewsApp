@@ -19,4 +19,5 @@ This app includes features like:
 #### Dark Theme:
 
 ![home screen light]()
-![splash screen2](https://github.com/user-attachments/assets/3ac204ee-66ef-46c5-a47f-2da7057d3172)
+![splash screen2h](https://github.com/user-attachments/assets/c6fe7caf-beb3-4584-8c66-2742dc030f07)
+

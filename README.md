@@ -11,8 +11,11 @@ This app includes features like:
 ### Screenshots:
 
 #### Light Theme:
-[![See Screenshots](https://img.shields.io/badge/Screenshots-Click_Here-blue?style=for-the-badge)]![Splash Screen](https://github.com/user-attachments/assets/256b6aff-2ac7-43ff-ac88-f48a3b690700)
+<a href="(https://github.com/user-attachments/assets/2ff68fb7-2346-44b3-9f60-d039e10f03d2)">
+  <img src="assets/mockups/light_theme_mockup.png" alt="Light Theme" width="300" height="600">
+</a>
 
+![Splash Screen]
 
 #### Dark Theme:
 

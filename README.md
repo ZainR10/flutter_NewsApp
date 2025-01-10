@@ -11,14 +11,11 @@ This app includes features like:
 ### Screenshots:
 
 #### Light Theme:
+![splash screen](https://github.com/user-attachments/assets/29317945-dc10-4359-9f51-6a23800f5ee6) ![home screen light](https://github.com/user-attachments/assets/fd404f38-2643-47e4-9094-4026ff372bdf) ![Categories screen light](https://github.com/user-attachments/assets/0d24c1a7-64bd-423b-97a7-11b98c336f51) ![channels list light](https://github.com/user-attachments/assets/5b5abe22-f2da-438b-805a-59ced72088de) ![News details light](https://github.com/user-attachments/assets/e9072e04-1b48-44a0-82eb-0688958c3b48)
 
-<a href="https://github.com/user-attachments/assets/2ff68fb7-2346-44b3-9f60-d039e10f03d2"> <img src="https://github.com/user-attachments/assets/2ff68fb7-2346-44b3-9f60-d039e10f03d2" alt="Light Theme" width="300" height="560"> </a>
 
-<a href="https://github.com/user-attachments/assets/2afbb670-d5e1-435d-84d5-5ce373d8a330"> <img src="https://github.com/user-attachments/assets/2afbb670-d5e1-435d-84d5-5ce373d8a330" alt="Light Theme" width="300" height="560"> </a>
 
-#### Dark Theme:
 
-![home screen light]()
-![splash screen2h](https://github.com/user-attachments/assets/c6fe7caf-beb3-4584-8c66-2742dc030f07)
-![splash screenklj](https://github.com/user-attachments/assets/126c1ae8-64a0-42d7-b76c-cb94ac74dfb0)
+
+
 
